@@ -10,7 +10,7 @@ export const CARDS: Card[] = [
         name: 'FaBulous Amazing',
     
         cost: 1.99,
-        pic: 'https://images.squarespace-cdn.com/content/v1/54da2adce4b0f5424580db67/1530048228075-E0UFORBB8VBFGESYSFBQ/ke17ZwdGBToddI8pDm48kNBy2Ji5Aj1bR5tbJJziLpUUqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8PaoYXhp6HxIwZIk7-Mi3Tsic-L2IOPH3Dwrhl-Ne3Z2_OwHCcHONmIO9dd0IbeAdAvyqI3qVtQRegdzHSiiT8ofdurHDt8XjyaGurlSWvQe/CardFrame-Persona-Historical-2.jpg?format=1000w',
+        pic: 'https://storage.googleapis.com/fabmaster/media/images/IRA001-P_EUmBrk0.width-300.png',
         tags: ['keywords', 'go', 'here'],
     
         attack: 1,
@@ -27,7 +27,7 @@ export const CARDS: Card[] = [
         name: 'FaBulous Freshwater',
     
         cost: 2.99,
-        pic: 'https://material.angular.io/assets/img/examples/shiba2.jpg',
+        pic: 'https://storage.googleapis.com/fabmaster/media/images/IRA002-P_03Jc6pa.width-300.png',//'https://material.angular.io/assets/img/examples/shiba2.jpg',
         tags: ['keywords', 'are', 'here', 'too'],
     
         attack: 5,
