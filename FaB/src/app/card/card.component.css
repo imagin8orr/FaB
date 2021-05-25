@@ -1,13 +1,27 @@
 .container {
   display: grid;
-  grid-template-columns: 20%, 20%, 20%, 20%, 20%;
+  /* grid-template-columns: 20%, 20%, 20%, 20%, 20%; */
 }
 
 .example-card {
-  max-width: 300px;
+  max-width: 400px;
 }
   
 .example-header-image {
   background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
   background-size: cover;
+}
+
+mat-card {
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+mat-card-header {
+  background-color: #DDD;
+  color: #FFF;
+  padding: 10px;
+}
+img {
+  max-width: 370px;
 }

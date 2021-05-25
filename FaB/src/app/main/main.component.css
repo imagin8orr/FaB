@@ -1,0 +1,20 @@
+content {
+    display: flex;
+    justify-content: center;
+    width: 80%;
+}
+
+#divManage {
+    background-color: #EEE;
+    /* width: 600px; */
+}
+
+.spacer {
+    width: 40px;
+}
+
+#divCards {
+    /* width: 400px; */
+    display: flex;
+    justify-content: center;
+}

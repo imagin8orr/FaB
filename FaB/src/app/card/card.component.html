@@ -1,27 +1,26 @@
 <mat-card *ngFor="let card of cards" class="example-card">
   <mat-card-header>
-    <!-- <div mat-card-avatar class="example-header-image"></div> -->
+    <div mat-card-avatar class="example-header-image"></div>
     <mat-card-title>
       <div>
-          <label for="name">Card name: </label>
-          <input id="name" [(ngModel)]="card.name" placeholder="name">
+          <label for="name">{{card.name}}</label>
+          <!-- <input id="name" [(ngModel)]="card.name" placeholder="name"> -->
       </div>
     </mat-card-title>
     <mat-card-subtitle>{{card.type}}</mat-card-subtitle>
   </mat-card-header>
-  <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+  <img mat-card-image src="{{card.pic}}" alt="Photo of a Shiba Inu">
   <mat-card-content>
-      <div>
+      <!-- <div>
           <label for="name">Card name: </label>
           <input id="name" [(ngModel)]="card.name" placeholder="name">
-      </div>
+      </div> -->
 
-
+    <p>name: {{card.name}}</p>
     <p>id: {{card.id}}</p>
     <p>type: {{card.type}}</p>
     <p>set: {{card.set}}</p>
     <p>rarity: {{card.rarity}}</p>
-    <p>name: {{card.name}}</p>
     
     <p>cost: {{card.cost}}</p>
     <p>pic: {{card.pic}}</p>

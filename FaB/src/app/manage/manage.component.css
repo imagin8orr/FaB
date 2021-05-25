@@ -1,23 +1,31 @@
-input { 
+input, option { 
     height: 30px;
     font-size: 20px;
+    
 }
 
 div {
     width: 600px;
+    padding-top: 8px;
     display: grid;
-    /* grid-template-columns: 20%, 20%, 20%, 20%, 20%; */
 }
 
 .spacer {
     height: 30px;
 }
 
-.card-container {
-    display: flex;
-    flex-wrap: wrap;
+.card-inputForm {
+    /* display: flex;
+    flex-wrap: wrap; */
     justify-content: center;
-    margin-top: 16px;
+    margin-top: 8px;
+    padding: 8px;
     
   }
 
+  .example-form {
+    min-width: 150px;
+    max-width: 600px;
+    width: 100%;
+  }
+  
