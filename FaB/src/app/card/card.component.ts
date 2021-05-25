@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Card  } from '../models/Card';
-// import { CARDS } from '../models/mock-cards';
+import { CARDS } from '../models/mock-cards';
 
-import { CardsService } from '../services/cards.service';
+// import { CardsService } from '../services/cards.service';
 
 @Component({
   selector: 'app-card',
@@ -12,14 +12,15 @@ import { CardsService } from '../services/cards.service';
 
 export class CardComponent implements OnInit {
   
-  // cards = CARDS;
-  cards: Card[] = [];
+  cards = CARDS;
+  // cards: Card[] = [];
 
-  constructor(private cardService: CardsService) { }
+  constructor() { }
+  // constructor(private cardService: CardsService) { }
 
   getCards(): void {
-    this.cards = this.cardService.getCards()
-                     .subscribe(cards => this.cards = cards);
+    // this.cards = this.cardService.getCards()
+    //                     .subscribe(cards => this.cards = cards);
   }
 
   ngOnInit(): void {

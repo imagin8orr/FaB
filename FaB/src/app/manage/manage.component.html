@@ -1,0 +1,79 @@
+<p>manage works!</p>
+
+<div class="card-container">
+    <!-- <div class="card card-small" (click)="selection.value = 'component'" tabindex="0"> -->
+    <div>
+        <label for="id">ID: {{card.id}}</label>
+        <!-- <input id="id" [(ngModel)]="card.id" placeholder="id"> -->
+    </div>
+    <div>
+        <label for="name">Name: </label>
+        <input id="name" [(ngModel)]="card.name" placeholder="name">
+    </div>
+    <div>
+        <label for="type">Type: </label>
+        <input id="type" [(ngModel)]="card.type" placeholder="type">
+    </div>
+    <div>
+        <label for="set">Set: </label>
+        <input id="set" [(ngModel)]="card.set" placeholder="set">
+    </div>
+    <div>
+        <label for="rarity">Rarity: </label>
+        <input id="rarity" [(ngModel)]="card.rarity" placeholder="rarity">
+    </div>
+    <div class="spacer"></div>
+    <div>
+        <label for="cost">Cost: </label>
+        <input id="cost" [(ngModel)]="card.cost" placeholder="cost">
+    </div>
+    <div>
+        <label for="pic">Pic: </label>
+        <input id="pic" [(ngModel)]="card.pic" placeholder="pic">
+    </div>
+    <div>
+        <label for="tags">Tags: </label>
+        <input id="tags" [(ngModel)]="card.tags" placeholder="tags">
+        <!-- <mat-chip-list>
+            <mat-chip>asdfasdfasdf</mat-chip>
+            <mat-chip>{{tag}}</mat-chip>
+        </mat-chip-list>         -->
+    </div>
+    <div class="spacer"></div>
+    <div>
+        <label for="attack">Attack: </label>
+        <input id="attack" [(ngModel)]="card.attack" placeholder="attack">
+    </div>
+    <div>
+        <label for="bonus_attack">Bonus Attack: </label>
+        <input id="bonus_attack" [(ngModel)]="card.bonus_attack" placeholder="bonus_attack">
+    </div>
+    <div>
+        <label for="block">Block: </label>
+        <input id="block" [(ngModel)]="card.block" placeholder="block">
+    </div>
+    <div>
+        <label for="bonus_block">Bonus Block: </label>
+        <input id="bonus_block" [(ngModel)]="card.bonus_block" placeholder="bonus_block">
+    </div>
+    <div>
+        <label for="pitch">Pitch: {{selectedPitch}} </label>
+        <mat-form-field appearance="standard">
+
+        <mat-select id="pitch" [(value)]="selectedPitch">
+            <mat-option>Select...</mat-option>
+            <mat-option *ngFor="let option of pitchValues" value={{option}}>
+                {{option}}
+            </mat-option>
+        </mat-select>
+    
+        </mat-form-field>
+</div>
+                                        
+</div>
+<!-- 
+attack: number; 
+bonus_attack: number;   // +/-
+block: number;  
+bonus_block: number;  // +/-
+pitch: number;  // 1,2,3 -->

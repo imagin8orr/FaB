@@ -1,8 +1,13 @@
+.container {
+  display: grid;
+  grid-template-columns: 20%, 20%, 20%, 20%, 20%;
+}
+
 .example-card {
-    max-width: 300px;
-  }
+  max-width: 300px;
+}
   
-  .example-header-image {
-    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-    background-size: cover;
-  }
+.example-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}
