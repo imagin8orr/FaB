@@ -10,7 +10,7 @@ export const CARDS: Card[] = [
         name: 'FaBulous Amazing',
     
         cost: 1.99,
-        pic: 'https://storage.googleapis.com/fabmaster/media/images/IRA001-P_EUmBrk0.width-300.png',
+        pic: 'https://storage.googleapis.com/fabmaster/media/images/IRA002-P_03Jc6pa.width-300.png',
         tags: ['keywords', 'go', 'here'],
     
         attack: 1,
