@@ -2,14 +2,12 @@
   <mat-card-header>
     <div mat-card-avatar class="example-header-image"></div>
     <mat-card-title>
-      <div>
           <label for="name">{{card.name}}</label>
           <!-- <input id="name" [(ngModel)]="card.name" placeholder="name"> -->
-      </div>
+          <mat-card-subtitle>{{card.type}}</mat-card-subtitle>
     </mat-card-title>
-    <mat-card-subtitle>{{card.type}}</mat-card-subtitle>
   </mat-card-header>
-  <img mat-card-image src="{{card.pic}}" alt="Photo of a Shiba Inu">
+  <img mat-card-image src="{{card.pic}}" alt="card.pic">
   <mat-card-content>
       <!-- <div>
           <label for="name">Card name: </label>
@@ -32,8 +30,8 @@
     <p>bonus_block: {{card.bonus_block}}</p>
     <p>pitch: {{card.pitch}}</p>
   </mat-card-content>
-  <mat-card-actions>
+  <!-- <mat-card-actions>
     <button mat-button>LIKE</button>
     <button mat-button>SHARE</button>
-  </mat-card-actions>
+  </mat-card-actions> -->
 </mat-card>

@@ -4,12 +4,11 @@ import { Card } from './Card';
 export const CARDS: Card[] = [
     {
         id: 1,
-        type: 'Swamp',
-        set: 'MySet',
-        rarity: 'Not Rare one bit',
-        name: 'FaBulous Amazing',
+        type: 'Sword',
+        set: 'Ninja Weapon',
+        rarity: 'need params (1-5, legendary/rare/common/etc)',
+        name: 'Edge of Autumn',
     
-        cost: 1.99,
         pic: 'https://storage.googleapis.com/fabmaster/media/images/IRA002-P_03Jc6pa.width-300.png',
         tags: ['keywords', 'go', 'here'],
     
@@ -18,6 +17,7 @@ export const CARDS: Card[] = [
         block: 3,
         bonus_block: 4,
         pitch: 2,        
+        cost: 1,
     },
     {
         id: 2,

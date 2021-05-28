@@ -8,7 +8,8 @@
 }
   
 .example-header-image {
-  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  /* background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg'); */
+  background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_M1CmshiAYk_y5Xdu74-irKHseJJ901YY4g&usqp=CAU');
   background-size: cover;
 }
 
@@ -24,4 +25,18 @@ mat-card-header {
 }
 img {
   max-width: 370px;
+}
+
+label {
+  color: #000;
+}
+
+mat-card-header {
+  height: 42px;
+  margin-bottom: 16px;
+}
+
+mat-card-subtitle {
+  padding-top: 8px;
+  text-align: left;
 }

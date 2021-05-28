@@ -29,12 +29,6 @@
     <div class="spacer">&nbsp;</div>
     <div>
         <mat-form-field class="example-full-width">
-            <mat-label for="cost">Cost: </mat-label>
-            <input matInput id="cost" [(ngModel)]="card.cost" placeholder="cost">
-        </mat-form-field>
-    </div>
-    <div>
-        <mat-form-field class="example-full-width">
             <mat-label for="pic">Pic URL: </mat-label>
             <input matInput id="pic" [(ngModel)]="card.pic" placeholder="https://mypic.io/ree.jpg">
         </mat-form-field>
@@ -56,10 +50,29 @@
         </mat-form-field>
     </div>
 
+
     <div class="spacer">&nbsp;</div>
 
-    <div style="display: flex;">
-        <div style="width:100px;">
+    <div  style="width: 400px; display: flex;">
+        <mat-form-field class="example-full-width">
+            <mat-label>Pitch: {{selectedPitch}}</mat-label>
+            <mat-select id="pitch" [(value)]="selectedPitch" >
+                <mat-option *ngFor="let option of pitchValues" value={{option}}>
+                    {{option}}
+                </mat-option>
+            </mat-select>    
+        </mat-form-field>
+        <div class="spacer">&nbsp;</div>
+        <mat-form-field class="example-full-width">
+                <mat-label for="cost">Cost: </mat-label>
+                <input matInput id="cost" [(ngModel)]="card.cost" placeholder="cost">
+        </mat-form-field>
+    </div>
+
+    <div class="spacer">&nbsp;</div>
+
+    <div style="width: 400px; display: flex;">
+        <div style="width:80px;">
             <mat-form-field class="example-full-width">
                 <mat-label for="attack">Attack: </mat-label>
             <input matInput id="attack" [(ngModel)]="card.attack" placeholder="Attack">
@@ -70,7 +83,7 @@
             </mat-form-field>
         </div>
         <div class="spacer">&nbsp;</div>
-        <div style="width:100px;">
+        <div style="width:80px;">
             <mat-form-field class="example-full-width">
                 <mat-label for="block">Block: </mat-label>
                 <input matInput id="block" [(ngModel)]="card.block" placeholder="Block">
@@ -80,17 +93,5 @@
                 <input matInput id="bonus_block" [(ngModel)]="card.bonus_block" placeholder="Bonus Block" type="number">
             </mat-form-field>
         </div>
-        <div class="spacer">&nbsp;</div>
-        <div style="width:100px;">
-            <!-- <mat-label for="pitch">Pitch: {{selectedPitch}} </mat-label> -->
-            <mat-form-field class="example-full-width">
-                <mat-label>Pitch: {{selectedPitch}}</mat-label>
-                <mat-select id="pitch" [(value)]="selectedPitch" >
-                    <mat-option *ngFor="let option of pitchValues" value={{option}}>
-                        {{option}}
-                    </mat-option>
-                </mat-select>    
-            </mat-form-field>
-        </div>                
     </div>
 </div>
