@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl} from '@angular/forms';
+import { FormControl } from '@angular/forms';
 
 import { CardComponent } from '../card/card.component';
 import { Card } from '../models/Card';
@@ -7,6 +7,8 @@ import { CARDS } from '../models/mock-cards';
 
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {MatChipInputEvent} from '@angular/material/chips';
+
+import { CLASSES } from '../models/CardClasses';
 
 
 @Component({
@@ -24,8 +26,7 @@ export class ManageComponent implements OnInit {
   pitchValues = [1,2,3];
   selectedPitch = this.card.pitch;
 
-  classValues = ['Brute', 'Generic', 'Guardian', 'Illusionist', 'Light', 'Light Illusionist', 'Light Warrior', 'Mech', 'Misc', 'Ninja', 'Promo', 'Ranger', 
-                 'Runeblade', 'Shadow', 'Shadow Brute', 'Shadow Runeblade', 'Warrior', 'Wizard']
+  classValues = CLASSES;
   selectedClass = this.card.class;
 
   // tag chips

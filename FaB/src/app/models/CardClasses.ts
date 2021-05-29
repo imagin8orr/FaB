@@ -1,6 +1,21 @@
-export interface CardClass {
-    class: ['Promo', 'Generic', 'Ninja', 'Warrior', 'Light Warrior', 'Brute', 'Shadow Brute', 'Guardian', 'Ranger', 
-            'Runeblade', 'Shadow RB', 'Mech', 'Wizard', 'Illusionist', 'Light Illusionist', 'Light', 'Shadow', 'Misc'];
-}
-
+export const CLASSES: string[] = [
+        'Brute', 
+        'Generic', 
+        'Guardian', 
+        'Illusionist', 
+        'Light', 
+        'Light Illusionist', 
+        'Light Warrior', 
+        'Mech', 
+        'Misc', 
+        'Ninja', 
+        'Promo', 
+        'Ranger', 
+        'Runeblade', 
+        'Shadow', 
+        'Shadow Brute', 
+        'Shadow Runeblade', 
+        'Warrior', 
+        'Wizard'
+];
 
