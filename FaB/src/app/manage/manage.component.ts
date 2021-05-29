@@ -24,6 +24,10 @@ export class ManageComponent implements OnInit {
   pitchValues = [1,2,3];
   selectedPitch = this.card.pitch;
 
+  classValues = ['Brute', 'Generic', 'Guardian', 'Illusionist', 'Light', 'Light Illusionist', 'Light Warrior', 'Mech', 'Misc', 'Ninja', 'Promo', 'Ranger', 
+                 'Runeblade', 'Shadow', 'Shadow Brute', 'Shadow Runeblade', 'Warrior', 'Wizard']
+  selectedClass = this.card.class;
+
   // tag chips
   tags = this.card.tags;
   removable = true;

@@ -9,6 +9,16 @@
     </div>
     <div>
         <mat-form-field class="example-full-width">
+            <mat-label>Class: {{selectedClass}}</mat-label>
+            <mat-select id="pitch" [(value)]="selectedClass" >
+                <mat-option *ngFor="let option of classValues" value={{option}}>
+                    {{option}}
+                </mat-option>
+            </mat-select>    
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field class="example-full-width">
             <mat-label for="type">Type: </mat-label>
             <input matInput id="type" [(ngModel)]="card.type" placeholder="type">
         </mat-form-field>

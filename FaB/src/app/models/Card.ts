@@ -1,8 +1,7 @@
-
-
 export interface Card {
     id: number;
     type: string;
+    class: string;
     set: string;    // alphanumeric
     rarity: string;
     name: string;

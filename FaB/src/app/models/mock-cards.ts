@@ -8,6 +8,8 @@ export const CARDS: Card[] = [
         set: 'Ninja Weapon',
         rarity: 'need params (1-5, legendary/rare/common/etc)',
         name: 'Edge of Autumn',
+        class: 'Ninja',
+        // class: ['Promo', 'Generic', 'Ninja', 'Warrior', 'Light Warrior', 'Brute', 'Shadow Brute', 'Guardian', 'Ranger', 'Runeblade', 'Shadow RB', 'Mech', 'Wizard', 'Illusionist', 'Light Illusionist', 'Light', 'Shadow', 'Misc'],
     
         pic: 'https://storage.googleapis.com/fabmaster/media/images/IRA002-P_03Jc6pa.width-300.png',
         tags: ['keywords', 'go', 'here'],
@@ -25,6 +27,7 @@ export const CARDS: Card[] = [
         set: 'MySet2',
         rarity: 'Def Rare tho',
         name: 'FaBulous Freshwater',
+        class: 'Generic',
     
         cost: 2.99,
         pic: 'https://storage.googleapis.com/fabmaster/media/images/IRA002-P_03Jc6pa.width-300.png',//'https://material.angular.io/assets/img/examples/shiba2.jpg',
