@@ -1,4 +1,4 @@
-export const CLASSES: string[] = [
+export const CARD_CLASSES: string[] = [
         'Brute', 
         'Generic', 
         'Guardian', 

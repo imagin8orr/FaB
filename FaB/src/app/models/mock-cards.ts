@@ -6,7 +6,7 @@ export const CARDS: Card[] = [
         id: 1,
         type: 'Sword',
         set: 'Ninja Weapon',
-        rarity: 'need params (1-5, legendary/rare/common/etc)',
+        rarity: 'Tournament Prize',
         name: 'Edge of Autumn',
         class: 'Ninja',
         // class: ['Promo', 'Generic', 'Ninja', 'Warrior', 'Light Warrior', 'Brute', 'Shadow Brute', 'Guardian', 'Ranger', 'Runeblade', 'Shadow RB', 'Mech', 'Wizard', 'Illusionist', 'Light Illusionist', 'Light', 'Shadow', 'Misc'],
@@ -25,7 +25,7 @@ export const CARDS: Card[] = [
         id: 2,
         type: 'Water',
         set: 'MySet2',
-        rarity: 'Def Rare tho',
+        rarity: 'Rare',
         name: 'FaBulous Freshwater',
         class: 'Generic',
     

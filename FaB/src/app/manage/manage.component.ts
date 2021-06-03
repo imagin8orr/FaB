@@ -8,7 +8,8 @@ import { CARDS } from '../models/mock-cards';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {MatChipInputEvent} from '@angular/material/chips';
 
-import { CLASSES } from '../models/CardClasses';
+import { CARD_CLASSES } from '../models/CardClasses';
+import { CARD_RARITIES } from '../models/CardRarities';
 
 
 @Component({
@@ -21,13 +22,17 @@ export class ManageComponent implements OnInit {
 
   cards = CARDS;
   card = this.cards[0];
+
   
  
   pitchValues = [1,2,3];
   selectedPitch = this.card.pitch;
 
-  classValues = CLASSES;
+  classValues = CARD_CLASSES;
   selectedClass = this.card.class;
+
+  rarityValues = CARD_RARITIES;
+  selectedRarity = this.card.rarity;
 
   // tag chips
   tags = this.card.tags;
@@ -58,8 +63,12 @@ export class ManageComponent implements OnInit {
 
   selectPitch(event: Event) {
     this.selectedPitch = Number((event.target as HTMLSelectElement).value);
+    this.card.pitch = this.selectedPitch;
   }
 
+  // selectTags(event: Event) {
+  //   this.card.tags = new Map((event.target as HTMLSelectElement).value));
+  // }
   
 
   constructor() { }
