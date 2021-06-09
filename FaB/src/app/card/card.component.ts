@@ -2,6 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { Card  } from '../models/Card';
 import { CARDS } from '../models/mock-cards';
 
+import { CARD_CLASSES  } from '../models/CardClasses';
+import { CARD_RARITIES  } from '../models/CardRarities';
+import { CARD_TYPES  } from '../models/CardTypes';
+
+
+
 // import { CardsService } from '../services/cards.service';
 
 @Component({

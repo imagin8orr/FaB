@@ -1,14 +1,21 @@
+import { Component } from '@angular/core';
+//import * as Math from 'mathjs';
+
 import { Card } from './Card';
+
+import { CARD_CLASSES  } from '../models/CardClasses';
+import { CARD_RARITIES  } from '../models/CardRarities';
+import { CARD_TYPES  } from '../models/CardTypes';
 
 
 export const CARDS: Card[] = [
     {
         id: 1,
-        type: 'Sword',
+        type: CARD_TYPES[Math.floor(Math.random() * CARD_TYPES.length)], //'Sword',
         set: 'Ninja Weapon',
-        rarity: 'Tournament Prize',
+        rarity: CARD_RARITIES[Math.floor(Math.random() * CARD_RARITIES.length)], // 'Tournament Prize',
         name: 'Edge of Autumn',
-        class: 'Ninja',
+        class: CARD_CLASSES[Math.floor(Math.random() * CARD_CLASSES.length)], // 'Ninja',
         // class: ['Promo', 'Generic', 'Ninja', 'Warrior', 'Light Warrior', 'Brute', 'Shadow Brute', 'Guardian', 'Ranger', 'Runeblade', 'Shadow RB', 'Mech', 'Wizard', 'Illusionist', 'Light Illusionist', 'Light', 'Shadow', 'Misc'],
     
         pic: 'https://storage.googleapis.com/fabmaster/media/images/IRA002-P_03Jc6pa.width-300.png',
