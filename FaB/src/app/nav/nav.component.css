@@ -1,0 +1,8 @@
+nav { 
+    display: flex;
+    gap: 3em;
+    background-color: #ccc;
+    text-align: center;
+ }
+
+nav > * { width: 100%; }
