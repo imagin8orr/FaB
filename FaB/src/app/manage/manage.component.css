@@ -15,17 +15,24 @@ div {
 }
 
 .card-inputForm {
-    /* display: flex;
-    flex-wrap: wrap; */
+    /* display: flex; */
     justify-content: center;
     margin-top: 8px;
     padding: 8px;
-    
-  }
+    /* align-content: center; */
+}
 
-  .example-form {
+/* .columns {
+    display: flex;
+    gap: 3em;
+} */
+
+.columns > * { width: 50%; }
+
+
+.example-form {
     min-width: 150px;
     max-width: 600px;
     width: 100%;
-  }
+}
   

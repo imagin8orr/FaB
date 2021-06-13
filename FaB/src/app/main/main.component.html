@@ -1,11 +1,35 @@
 <!-- <p>{{title}}</p> -->
+<nav>
+    <app-nav></app-nav>
+</nav>
+
 <content>
+    <mat-tab-group>
+        <mat-tab label="Cards"> 
+            <app-card></app-card>
+        </mat-tab>
+        <mat-tab label="Card List"> 
+            <app-cardlist></app-cardlist>
+        </mat-tab>
+        <mat-tab label="Manage Cards">
+            <app-manage></app-manage>
+        </mat-tab>
+        <mat-tab label="Decks">
+            <app-deck></app-deck>
+        </mat-tab>
+    </mat-tab-group>
+
+
+<!-- <div id=divDecks style="width: 100%;">
+    <app-deck></app-deck>
+</div> -->
+<!-- 
 <div id="divManage">
     <app-manage></app-manage>
 </div>
 <div class="spacer">&nbsp;</div>
 <div id="divCards">
     <app-card></app-card>
-</div>        
+</div>         -->
 </content>
 

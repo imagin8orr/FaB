@@ -1,6 +1,6 @@
-<mat-card *ngFor="let card of cards" class="example-card">
+<mat-card *ngFor="let card of cards" class="example-card columns">
   <mat-card-header>
-    <div mat-card-avatar class="example-header-image"></div>
+    <div mat-card-avatar class="header-image-{{ card.type.toLowerCase() }}"></div>
     <mat-card-title>
           <label for="name">{{card.name}}</label>
           <!-- <input id="name" [(ngModel)]="card.name" placeholder="name"> -->

@@ -11,12 +11,12 @@ export class CardsService {
 
   constructor() { } 
 
-  // getCards(): Card[] {
-  //   return CARDS;
-  // }
-  getCards(): Observable<Card[]> {
-    const cards = of(CARDS);
-    return cards;
+  getCards(): Card[] {
+    return CARDS;
   }
+  // getCards(): Observable<Card[]> {
+  //   const cards = of(CARDS);
+  //   return cards;
+  // }
     
 }
