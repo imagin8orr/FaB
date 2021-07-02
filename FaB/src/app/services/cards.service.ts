@@ -14,6 +14,7 @@ export class CardsService {
   getCards(): Card[] {
     return CARDS;
   }
+
   // getCards(): Observable<Card[]> {
   //   const cards = of(CARDS);
   //   return cards;

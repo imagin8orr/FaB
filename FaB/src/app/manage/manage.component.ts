@@ -22,9 +22,7 @@ export class ManageComponent implements OnInit {
 
   cards = CARDS;
   card = this.cards[0];
-
-  
- 
+   
   pitchValues = [1,2,3];
   selectedPitch = this.card.pitch;
 
@@ -69,6 +67,10 @@ export class ManageComponent implements OnInit {
   // selectTags(event: Event) {
   //   this.card.tags = new Map((event.target as HTMLSelectElement).value));
   // }
+
+  onSave(card: Card): void {
+    this.cards.push(card);
+  }
   
 
   constructor() { }

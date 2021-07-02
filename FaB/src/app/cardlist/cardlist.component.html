@@ -1,14 +1,17 @@
-<p>cardlist works!</p>
+<p>Listing the cards...</p>
 
-<ul class="columns">
+<!-- <ul class="columns">
     <!-- <li *ngFor="let card of cards"
         [class.selected]="card === selectedCard"
-        (click)="onSelect(card)"> -->
+        (click)="onSelect(card)">
     <li *ngFor="let card of cards">
-        liCard: {{card.id}}
-        <app-card [id]="card.id"></app-card>
+        <!-- liCard: {{card.id}}
+        <app-card [id]="card.id" *ngIf="card.id==1"></app-card>
     </li>
-</ul>
+</ul> -->
 
 <!-- <app-card [card]="selectedCard"></app-card> -->
 <!-- <app-card></app-card>[(ngModel)]="card.name" -->
+<div *ngFor="let card of cards">
+    <app-card [id]="" *ngIf="card.id==1"></app-card>
+</div>

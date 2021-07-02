@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -38,6 +39,7 @@ import { DeckComponent } from './deck/deck.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule, //FormControl, FormGroup,
+    HttpClientModule,
     MaterialModule,
     // MatCardModule, MatSelectModule, MatOptionModule, MatChipsModule
   ],

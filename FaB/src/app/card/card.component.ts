@@ -29,7 +29,8 @@ export class CardComponent implements OnInit {
   constructor(private cardService: CardsService) { }
 
   getCards(): void {
-    this.cards = this.cardService.getCards();//.subscribe(cards => this.cards = cards);
+    this.cards = this.cardService.getCards();
+    // this.cards = this.cardService.getCards().subscribe(cards => this.cards = cards);
   }
 
   ngOnInit(): void {
