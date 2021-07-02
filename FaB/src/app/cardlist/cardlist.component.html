@@ -12,6 +12,10 @@
 
 <!-- <app-card [card]="selectedCard"></app-card> -->
 <!-- <app-card></app-card>[(ngModel)]="card.name" -->
-<div *ngFor="let card of cards">
-    <app-card [id]="" *ngIf="card.id==1"></app-card>
-</div>
+
+<!-- <div *ngFor="let card of cards">
+    <app-card [(ngModel)]="card.id" *ngIf="card.id==1"></app-card>
+</div> -->
+
+
+<app-card></app-card>

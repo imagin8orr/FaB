@@ -109,8 +109,10 @@
         </div>
     </div>
     <div>
-        
-    <mat-card class="example-card columns">
+    
+    <div class="spacer">&nbsp;</div>
+    
+    <mat-card class="example-card">
     <mat-card-header>
       <div mat-card-avatar class="header-image-{{ card.type.toLowerCase() }}"></div>
       <mat-card-title>
@@ -139,12 +141,12 @@
       <p>pitch: {{card.pitch}}</p>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-stroked-button (click)="onSave(card)">SAVE</button>
+      <button mat-stroked-button (click)="onSave()">SAVE</button>
       <button mat-stroked-button>DELETE</button>
     </mat-card-actions>
   </mat-card>
   </div>
-  <div>
+  <div class="example-card">
     <br/><br/><br/>
     <button mat-mini-fab>{{ cards.length }} cards saved</button>
     <app-cardlist></app-cardlist>   

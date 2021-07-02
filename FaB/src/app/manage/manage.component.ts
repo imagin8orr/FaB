@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import {COMMA, ENTER} from '@angular/cdk/keycodes';
+import {MatChipInputEvent} from '@angular/material/chips';
 
 import { CardComponent } from '../card/card.component';
 import { Card } from '../models/Card';
 import { CARDS } from '../models/mock-cards';
-
-import {COMMA, ENTER} from '@angular/cdk/keycodes';
-import {MatChipInputEvent} from '@angular/material/chips';
-
 import { CARD_CLASSES } from '../models/CardClasses';
 import { CARD_RARITIES } from '../models/CardRarities';
+
+import { CardsService } from '../services/cards.service';
 
 
 @Component({
@@ -21,7 +21,26 @@ import { CARD_RARITIES } from '../models/CardRarities';
 export class ManageComponent implements OnInit {
 
   cards = CARDS;
-  card = this.cards[0];
+  // card = this.cards[0];
+  card: Card =     {
+    id: 9999,
+    type: '',
+    set: '',
+    rarity: '',
+    name: '',
+    class: '',
+
+    cost: 0,
+    pic: '',
+    tags: [],
+
+    attack: 0,
+    bonus_attack: 0,
+    block: 0,
+    bonus_block: 0,
+    pitch: 0,        
+  } 
+
    
   pitchValues = [1,2,3];
   selectedPitch = this.card.pitch;
@@ -68,12 +87,48 @@ export class ManageComponent implements OnInit {
   //   this.card.tags = new Map((event.target as HTMLSelectElement).value));
   // }
 
-  onSave(card: Card): void {
-    this.cards.push(card);
+
+  resetCard(): void {
+    this.card = {
+      id: 9999,
+      type: '',
+      set: '',
+      rarity: '',
+      name: '',
+      class: '',
+  
+      cost: 0,
+      pic: '',
+      tags: [],
+  
+      attack: 0,
+      bonus_attack: 0,
+      block: 0,
+      bonus_block: 0,
+      pitch: 0,        
+    } 
+  }
+
+  onSave(): void {
+    console.log('tags ' + this.card.tags.length);
+    console.log(this.card.id);
+    this.card.id = this.cards.length+1;
+    console.log(this.card.id);
+    console.log('len ' + this.cards.length);
+
+    
+    // this.card.id = this.cards.length+1; 
+    this.cards.push(this.card);
+    this.cardService.saveCards(this.cards)
+    this.resetCard();
+
+    console.log('srv ' + this.cardService.cards.length);
+    // DEBUG: TODO
+    // Save to db via HTTP service (to PHP API?)
   }
   
 
-  constructor() { }
+  constructor(private cardService: CardsService) { }
 
   ngOnInit(): void {
   }

@@ -5,7 +5,7 @@ input, option {
 }
 
 div {
-    width: 600px;
+    width: 500px;
     padding-top: 8px;
     display: grid;
 }
@@ -76,6 +76,8 @@ div {
 .header-image-weapon {
     background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_M1CmshiAYk_y5Xdu74-irKHseJJ901YY4g&usqp=CAU');
     background-size: cover;
+    width: 50px;
+    max-width: 50px;
   }
   
   .header-image-hero {

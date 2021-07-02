@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Card  } from '../models/Card';
 import { CARDS } from '../models/mock-cards';
+import { CardsService } from '../services/cards.service';
 
 @Component({
   selector: 'app-cardlist',
@@ -13,9 +14,15 @@ export class CardlistComponent implements OnInit {
 
   cards = CARDS;
 
-  constructor() { }
+  constructor(private cardService: CardsService) { }
+
+  getCards(): void {
+    this.cards = this.cardService.getCards();
+    // this.cards = this.cardService.getCards().subscribe(cards => this.cards = cards);
+  }
 
   ngOnInit(): void {
+    this.getCards();
   }
 
 }

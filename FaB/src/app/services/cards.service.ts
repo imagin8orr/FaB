@@ -11,8 +11,15 @@ export class CardsService {
 
   constructor() { } 
 
+  cards = CARDS;
+
   getCards(): Card[] {
-    return CARDS;
+    // return CARDS;
+    return this.cards;
+  }
+
+  saveCards(newCards: Card[]) {
+    this.cards = newCards;
   }
 
   // getCards(): Observable<Card[]> {
