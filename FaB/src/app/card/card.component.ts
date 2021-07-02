@@ -23,6 +23,7 @@ export class CardComponent implements OnInit {
   
   // cards = CARDS;
   cards: Card[] = [];
+  id: number = 0;
 
   // constructor() { }
   constructor(private cardService: CardsService) { }

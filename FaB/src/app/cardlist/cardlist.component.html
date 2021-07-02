@@ -5,7 +5,7 @@
         [class.selected]="card === selectedCard"
         (click)="onSelect(card)"> -->
     <li *ngFor="let card of cards">
-        liCard: 
+        liCard: {{card.id}}
         <app-card [id]="card.id"></app-card>
     </li>
 </ul>
