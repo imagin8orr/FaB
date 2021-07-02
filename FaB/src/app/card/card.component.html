@@ -1,6 +1,6 @@
 <!-- <mat-card *ngFor="let card of cards" class="example-card columns"> -->
-<mat-expansion-panel *ngFor="let card of cards; let i=index" hideToggle>
-    <mat-expansion-panel-header> {{card.name}} {{card.id}}
+<mat-expansion-panel *ngFor="let card of cards; let i=index;">
+    <mat-expansion-panel-header> <b>{{card.name}} (id:{{card.id}})</b>
     </mat-expansion-panel-header>
 
   <mat-card class="example-card columns">
