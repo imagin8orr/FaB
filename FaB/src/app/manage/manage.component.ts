@@ -24,7 +24,7 @@ export class ManageComponent implements OnInit {
   // card = this.cards[0];
   card: Card =     {
     id: 9999,
-    type: '',
+    type: 'Weapon',
     set: '',
     rarity: '',
     name: '',
@@ -91,7 +91,7 @@ export class ManageComponent implements OnInit {
   resetCard(): void {
     this.card = {
       id: 9999,
-      type: '',
+      type: 'Weapon',
       set: '',
       rarity: '',
       name: '',
