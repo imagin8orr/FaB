@@ -1,0 +1,20 @@
+{
+	"watch": true,
+	"ignore_watch": [
+		"node_modules",
+		"public"
+	],
+	"watch_options": {
+		"followSymlinks": false
+	},
+	"name": "FAB API v 1.0",
+	"script": "./bin/www",
+	"exec_mode": "fork",
+	"log_date_format": "YYYY-MM-DD HH:mm Z",
+	"env": {
+		"NODE_ENV": "development"
+	},
+	"env_production": {
+		"NODE_ENV": "production"
+	}
+}

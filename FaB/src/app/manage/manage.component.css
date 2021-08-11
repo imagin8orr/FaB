@@ -6,12 +6,18 @@ input, option {
 
 div {
     width: 500px;
-    padding-top: 8px;
-    display: grid;
+    /* padding-top: 8px; */
+    display: block;
+}
+
+.mat-form-field {
+  display: block;
+  position: relative;
+  text-align: left;
 }
 
 .spacer {
-    height: 30px;
+    /* height: 30px; */
 }
 
 .card-inputForm {

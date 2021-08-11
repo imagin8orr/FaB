@@ -1,4 +1,8 @@
 <!-- <p>Manage This</p> -->
+<!-- <style>mat-grid-tile {
+    background: lightblue;
+  }</style> -->
+ 
 <div style="display: flex;">
     <div class="card-inputForm">
         <div>
@@ -10,11 +14,11 @@
         <div>
             <mat-form-field class="example-full-width">
                 <mat-label>Class: {{selectedClass}}</mat-label>
-                <mat-select id="class" [(ngModel)]="card.class" [(value)]="selectedClass" >
+                <mat-select id="class" [(ngModel)]="card.class" [(value)]="selectedClass">
                     <mat-option *ngFor="let option of classValues" value={{option}}>
                         {{option}}
                     </mat-option>
-                </mat-select>    
+                </mat-select>
             </mat-form-field>
         </div>
         <div>
@@ -55,30 +59,28 @@
                         {{tag}}
                         <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
                     </mat-chip>
-                    <input id="tags" placeholder="Add new tags/keywords"
-                        [matChipInputFor]="chipList"
-                        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                        [matChipInputAddOnBlur]="addOnBlur"
+                    <input id="tags" placeholder="Add new tags/keywords" [matChipInputFor]="chipList"
+                        [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
                         (matChipInputTokenEnd)="add($event)">
-                </mat-chip-list>     
+                </mat-chip-list>
             </mat-form-field>
         </div>
 
         <div class="spacer">&nbsp;</div>
 
-        <div  style="width: 400px; display: flex;">
+        <div style="width: 400px; display: flex;">
             <mat-form-field class="example-full-width">
                 <mat-label>Pitch: {{card.pitch}}</mat-label>
                 <mat-select id="pitch" [(ngModel)]="card.pitch">
                     <mat-option *ngFor="let option of pitchValues" value={{option}}>
                         {{option}}
                     </mat-option>
-                </mat-select>    
+                </mat-select>
             </mat-form-field>
             <div class="spacer">&nbsp;</div>
             <mat-form-field class="example-full-width">
-                    <mat-label for="cost">Cost: </mat-label>
-                    <input matInput id="cost" [(ngModel)]="card.cost" placeholder="cost">
+                <mat-label for="cost">Cost: </mat-label>
+                <input matInput id="cost" [(ngModel)]="card.cost" placeholder="cost">
             </mat-form-field>
         </div>
 
@@ -88,7 +90,7 @@
             <div style="width:80px;">
                 <mat-form-field class="example-full-width">
                     <mat-label for="attack">Attack: </mat-label>
-                <input matInput id="attack" [(ngModel)]="card.attack" placeholder="Attack">
+                    <input matInput id="attack" [(ngModel)]="card.attack" placeholder="Attack">
                 </mat-form-field>
                 <mat-form-field class="example-full-width">
                     <mat-label for="bonus_attack">Bonus Attack: </mat-label>
@@ -103,57 +105,63 @@
                 </mat-form-field>
                 <mat-form-field class="example-full-width">
                     <mat-label for="bonus_block">Bonus Block: </mat-label>
-                    <input matInput id="bonus_block" [(ngModel)]="card.bonus_block" placeholder="Bonus Block" type="number">
+                    <input matInput id="bonus_block" [(ngModel)]="card.bonus_block" placeholder="Bonus Block"
+                        type="number">
                 </mat-form-field>
             </div>
         </div>
     </div>
+    
+    
     <div>
-    
-    <div class="spacer">&nbsp;</div>
-    
-    <mat-card class="example-card">
-    <mat-card-header>
-      <div mat-card-avatar class="header-image-{{ card.type.toLowerCase() }}"></div>
-      <mat-card-title>
-            <label for="name">{{card.name}} {{card.id}}</label>
-            <!-- <input id="name" [(ngModel)]="card.name" placeholder="name"> -->
-            <mat-card-subtitle>{{card.type}}</mat-card-subtitle>
-      </mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <img mat-card-image src="{{card.pic}}" alt="card.pic">
-      <p>name: {{card.name}}</p>
-      <p>id: {{card.id}}</p>
-      <p>type: {{card.type}}</p>
-      <p>class: {{card.class}}</p>
-      <p>set: {{card.set}}</p>
-      <p>rarity: {{card.rarity}}</p>
-      
-      <p>cost: {{card.cost}}</p>
-      <p>pic: {{card.pic}}</p>
-      <p>tags: {{card.tags}}</p>
-      
-      <p>attack: {{card.attack}}</p>
-      <p>bonus_attack: {{card.bonus_attack}}</p>
-      <p>block: {{card.block}}</p>
-      <p>bonus_block: {{card.bonus_block}}</p>
-      <p>pitch: {{card.pitch}}</p>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-stroked-button (click)="onSave()">SAVE</button>
-      <button mat-stroked-button>DELETE</button>
-    </mat-card-actions>
-  </mat-card>
-  </div>
-  <div class="example-card">
-    <br/><br/><br/>
-    <button mat-mini-fab>{{ cards.length }} cards saved</button>
-    <app-cardlist></app-cardlist>   
-    <!-- <mat-expansion-panel *ngFor="let card of cards; let i=index;" style="width: 400px;">
+
+        <div class="spacer ">&nbsp;</div>
+
+        <mat-card class="example-card">
+            <mat-card-header>
+                <div mat-card-avatar class="header-image-{{ card.type.toLowerCase() }}"></div>
+                <mat-card-title>
+                    <label for="name">{{card.name}} {{card.id}}</label>
+                    <!-- <input id="name" [(ngModel)]="card.name" placeholder="name"> -->
+                    <mat-card-subtitle>{{card.type}}</mat-card-subtitle>
+                </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <img mat-card-image src="{{card.pic}}" alt="card.pic">
+                <p>name: {{card.name}}</p>
+                <p>id: {{card.id}}</p>
+                <p>type: {{card.type}}</p>
+                <p>class: {{card.class}}</p>
+                <p>set: {{card.set}}</p>
+                <p>rarity: {{card.rarity}}</p>
+
+                <p>cost: {{card.cost}}</p>
+                <p>pic: {{card.pic}}</p>
+                <p>tags: {{card.tags}}</p>
+
+                <p>attack: {{card.attack}}</p>
+                <p>bonus_attack: {{card.bonus_attack}}</p>
+                <p>block: {{card.block}}</p>
+                <p>bonus_block: {{card.bonus_block}}</p>
+                <p>pitch: {{card.pitch}}</p>
+            </mat-card-content>
+            <mat-card-actions style="padding-bottom: 25px;">
+                <button color="primary" mat-stroked-button (click)="onSave()">SAVE</button>
+                <button color="warn" mat-stroked-button>DELETE</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+    <!-- <div class="example-card">
+        <br /><br /><br /> -->
+        <!-- <button mat-mini-fab>{{ cards.length }} cards saved</button> -->
+        <!-- <app-cardlist></app-cardlist> -->
+        <!-- <mat-expansion-panel *ngFor="let card of cards; let i=index;" style="width: 400px;">
         <mat-expansion-panel-header> <b>{{card.name}} (id:{{card.id}})</b>
         </mat-expansion-panel-header>
         something here
     </mat-expansion-panel> -->
-  </div>
+    <!-- </div> -->
+
+
+   
 </div>

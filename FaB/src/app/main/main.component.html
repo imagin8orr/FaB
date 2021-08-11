@@ -4,15 +4,15 @@
 </nav>
 
 <content>
-    <mat-tab-group>
+    <mat-tab-group [(selectedIndex)]="currentTabIndex" (selectedTabChange)="onTabChanged($event);">
         <!-- <mat-tab label="Card"> 
             <app-card></app-card>
         </mat-tab> -->
-        <mat-tab label="Card List"> 
-            <app-cardlist></app-cardlist>
+        <mat-tab label="Card List">
+            <app-cardlist (eventChange)="onChange($event)" *ngIf="currentTabIndex === 0"></app-cardlist>
         </mat-tab>
         <mat-tab label="Manage Cards">
-            <app-manage></app-manage>
+            <app-manage [card_id]="card_id" (tabChange)="onSaveEdit($event)"></app-manage>
         </mat-tab>
         <mat-tab label="Decks">
             <app-deck></app-deck>
@@ -20,10 +20,10 @@
     </mat-tab-group>
 
 
-<!-- <div id=divDecks style="width: 100%;">
+    <!-- <div id=divDecks style="width: 100%;">
     <app-deck></app-deck>
 </div> -->
-<!-- 
+    <!-- 
 <div id="divManage">
     <app-manage></app-manage>
 </div>
@@ -32,4 +32,3 @@
     <app-card></app-card>
 </div>         -->
 </content>
-
