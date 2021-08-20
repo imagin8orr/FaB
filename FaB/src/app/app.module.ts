@@ -1,47 +1,56 @@
-import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
-
+import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ToastrModule } from 'ngx-toastr';
+import { LoaderModule } from './loader/loader.module';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { TagInputModule } from 'ngx-chips';
 
-import { MainComponent } from './main/main.component';
-import { NavComponent } from './nav/nav.component';
-import { ManageComponent } from './manage/manage.component';
-
-import { FormsModule, FormControl, FormGroup } from '@angular/forms';
-
-// import { MatCardModule } from '@angular/material/card';
-// import { MatChipsModule } from '@angular/material/chips';
-// import { MatSelectModule } from '@angular/material/select';
-
-import { MaterialModule } from './material/material.module';
-
-
-import { CardComponent } from './card/card.component';
-import { CardlistComponent } from './cardlist/cardlist.component';
-import { DeckComponent } from './deck/deck.component';
-
+import { AppComponent } from './app.component';
+import { CardsComponent } from './cards/cards.component';
+import { HeaderComponent } from './header/header.component';
+import { AddEditCardComponent } from './cards/add-edit-card/add-edit-card.component';
+import { LoginRegisterComponent } from './login-register/login-register.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { ViewCardComponent } from './cards/view-card/view-card.component';
+import { RegisterComponent } from './register/register.component';
+import { MyCardsComponent } from './cards/my-cards/my-cards.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavComponent,
-    MainComponent,
-    ManageComponent,
-    CardComponent,
-    CardlistComponent,
-    DeckComponent,
+    CardsComponent,
+    HeaderComponent,
+    AddEditCardComponent,
+    LoginRegisterComponent,
+    ForgotPasswordComponent,
+    ResetPasswordComponent,
+    ViewCardComponent,
+    RegisterComponent,
+    MyCardsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
-    FormsModule, //FormControl, FormGroup,
     HttpClientModule,
-    MaterialModule,
-    // MatCardModule, MatSelectModule, MatOptionModule, MatChipsModule
+    CommonModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    ToastrModule.forRoot({
+      closeButton: true,
+      timeOut:5000,
+      extendedTimeOut: 5000,
+      titleClass:'none-custom'
+    }),
+    LoaderModule,
+    NgMultiSelectDropDownModule.forRoot(),
+    TagInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]

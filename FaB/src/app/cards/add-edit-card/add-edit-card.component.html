@@ -1,0 +1,168 @@
+<div id="app">
+    <div class="main-wrapper container">
+        <div class="navbar-bg"></div>
+
+        <app-header></app-header>
+        <!-- Main Content -->
+        <div class="main-content">
+            <section class="section">
+                <div class="text-right mb-4">
+                    <button [routerLink]="['/']" class="btn btn-success" title="Back to Card">
+                        <i class="fas fa-arrow-left"></i> Back
+                    </button>
+                </div>
+                <div class="card card-primary row">
+                    <div class="col-12">
+                        <div class="card-body">
+
+                            <form [formGroup]="AddEditForm" (ngSubmit)="onSubmit()">
+                                <div class="row">
+                                    <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                        <label for="name">Name<span class="red_c">*</span></label>
+                                        <input id="name" formControlName="name" type="text" class="form-control">
+                                        <div *ngIf="submitted && f.name.errors" class="invalid-feedback-custom">
+                                            <div *ngIf="f.name.errors.required">Name is required</div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                        <label for="address">Class<span class="red_c">*</span></label>
+                                        <select class="form-control" formControlName="class">
+                                            <option *ngFor="let class of cardClasses;"
+                                                [value]="class">{{class}}</option>
+                                        </select>
+                                        <div *ngIf="submitted && f.class.errors" class="invalid-feedback-custom">
+                                            <div *ngIf="f.class.errors.required">Class is required</div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                        <label for="type">Type<span class="red_c">*</span></label>
+                                        <!-- <input id="type" formControlName="type" type="text" class="form-control"> -->
+                                        <select class="form-control" formControlName="type">
+                                            <option *ngFor="let type of cardTypes;"
+                                                [value]="type">{{type}}</option>
+                                        </select>
+                                        <div *ngIf="submitted && f.type.errors" class="invalid-feedback-custom">
+                                            <div *ngIf="f.type.errors.required">Type is required</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                        <label for="set">Set<span class="red_c">*</span></label>
+                                        <input id="set" formControlName="set" type="text" class="form-control">
+                                        <div *ngIf="submitted && f.set.errors" class="invalid-feedback-custom">
+                                            <div *ngIf="f.set.errors.required">Set is required</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                        <label for="rarity">Rarity<span class="red_c">*</span></label>
+                                        <ng-multiselect-dropdown [settings]="dropdownSettings" [data]="cardRarities"
+                                            [(ngModel)]="selectedItems" formControlName="rarity">
+                                        </ng-multiselect-dropdown>
+                                    </div>
+
+                                    <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                        <label for="image_url">Pic URL<span class="red_c">*</span></label>
+                                        <input id="image_url" formControlName="image_url" type="text"
+                                            class="form-control">
+                                        <div *ngIf="submitted && f.image_url.errors" class="invalid-feedback-custom">
+                                            <div *ngIf="f.image_url.errors.required">Pic URL is required</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-6">
+                                        <label for="tags">Tags</label>
+                                        <tag-input [blinkIfDupe]="false" [allowDupes]="false" [(ngModel)]='items'
+                                            [separatorKeyCodes]="[32,13]" formControlName="tags">
+                                        </tag-input>
+                                        <span>*Press enter or space key to add
+                                            tag</span>
+                                    </div>
+
+                                    <div class="form-group col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                                        <label for="pitch">Pitch<span class="red_c">*</span></label>
+                                        <select class="form-control" formControlName="pitch">
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                        </select>
+                                        <div *ngIf="submitted && f.pitch.errors" class="invalid-feedback-custom">
+                                            <div *ngIf="f.pitch.errors.required">Pitch is required</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                                        <label for="cost">Cost<span class="red_c">*</span></label>
+                                        <input autocomplete="off" (keypress)="mobile_number_validation($event)"
+                                            id="cost" formControlName="cost" type="text" class="form-control">
+                                        <div *ngIf="submitted && f.cost.errors" class="invalid-feedback-custom">
+                                            <div *ngIf="f.cost.errors.required">Cost is required</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                                        <label for="attack">Attack<span class="red_c">*</span></label>
+                                        <input autocomplete="off" (keypress)="mobile_number_validation($event)"
+                                            id="attack" formControlName="attack" type="text" class="form-control">
+                                        <div *ngIf="submitted && f.attack.errors" class="invalid-feedback-custom">
+                                            <div *ngIf="f.attack.errors.required">Attack is required</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                                        <label for="bonus_attack">Bonus attack<span class="red_c">*</span></label>
+                                        <input autocomplete="off" (keypress)="mobile_number_validation($event)"
+                                            id="bonus_attack" formControlName="bonus_attack" type="text"
+                                            class="form-control">
+                                        <div *ngIf="submitted && f.bonus_attack.errors" class="invalid-feedback-custom">
+                                            <div *ngIf="f.bonus_attack.errors.required">Bonus attack is required</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                                        <label for="block">Block<span class="red_c">*</span></label>
+                                        <input autocomplete="off" (keypress)="mobile_number_validation($event)"
+                                            id="block" formControlName="block" type="text" class="form-control">
+                                        <div *ngIf="submitted && f.block.errors" class="invalid-feedback-custom">
+                                            <div *ngIf="f.block.errors.required">Block is required</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                                        <label for="bonus_block">Bonus block <span class="red_c">*</span></label>
+                                        <input autocomplete="off" (keypress)="mobile_number_validation($event)"
+                                            id="bonus_block" formControlName="bonus_block" type="text"
+                                            class="form-control">
+                                        <div *ngIf="submitted && f.bonus_block.errors" class="invalid-feedback-custom">
+                                            <div *ngIf="f.bonus_block.errors.required">Bonus block is required</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer text-center">
+                                    <button type="submit" class="btn btn-primary">
+                                        <i *ngIf="loading" class="fa fa-spinner fa-spin pl-2"></i>
+                                        Submit
+                                    </button>
+                                </div>
+
+                                <!-- <ng-multiselect-dropdown [placeholder]="'custom placeholder'"
+                                    [settings]="dropdownSettings" [data]="dropdownList" [(ngModel)]="selectedItems"
+                                    (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)">
+                                </ng-multiselect-dropdown>
+
+                                <tag-input [(ngModel)]='items'></tag-input> -->
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+
+<app-loader [loading]="this.loading"></app-loader>

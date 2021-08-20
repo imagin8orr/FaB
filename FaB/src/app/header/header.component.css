@@ -1,0 +1,155 @@
+/* Left & Right */
+
+.modal.modal-left .modal-dialog,
+.modal.modal-right .modal-dialog {
+  position: fixed;
+  margin: auto;
+  width: 500px;
+  max-width: 100%;
+  height: 100%;
+}
+
+.modal.modal-left .modal-content,
+.modal.modal-right .modal-content {
+  height: 100%;
+  overflow-y: auto;
+}
+
+.modal.modal-left .modal-body,
+.modal.modal-right .modal-body {
+  padding: 15px 15px 80px;
+}
+
+.modal.modal-left.fade .modal-dialog {
+  left: -500px;
+  -webkit-transition: opacity 0.3s linear, left 0.3s ease-out;
+  -moz-transition: opacity 0.3s linear, left 0.3s ease-out;
+  -o-transition: opacity 0.3s linear, left 0.3s ease-out;
+  transition: opacity 0.3s linear, left 0.3s ease-out;
+}
+
+.modal.modal-left.fade.show .modal-dialog {
+  left: 0;
+}
+
+.modal.modal-right.fade .modal-dialog {
+  right: -500px;
+  -webkit-transition: opacity 0.3s linear, right 0.3s ease-out;
+  -moz-transition: opacity 0.3s linear, right 0.3s ease-out;
+  -o-transition: opacity 0.3s linear, right 0.3s ease-out;
+  transition: opacity 0.3s linear, right 0.3s ease-out;
+}
+
+.modal.modal-right.fade.show .modal-dialog {
+  right: 0;
+}
+
+.modal.modal-left .modal-content,
+.modal.modal-right .modal-content,
+.modal.modal-top .modal-content,
+.modal.modal-bottom .modal-content,
+.modal.modal-full .modal-content {
+  border-radius: 0;
+  border: none;
+}
+
+.modal.modal-left .modal-dialog.modal-sm,
+.modal.modal-right .modal-dialog.modal-sm {
+  width: 300px;
+}
+
+.modal.modal-left .modal-dialog.modal-lg,
+.modal.modal-right .modal-dialog.modal-lg {
+  width: 800px;
+}
+
+.modal.modal-left .modal-dialog.modal-xl,
+.modal.modal-right .modal-dialog.modal-xl {
+  width: 1140px;
+}
+
+.main_title {
+  color: #fff;
+}
+
+
+
+
+
+/*Avatar CSS start*/
+.avatar-wrapper{
+	position: relative;
+	height: 100px;
+	width: 100px;
+  margin: 5px auto;
+	overflow: hidden;
+	transition: all .3s ease;
+}
+
+#add_edit_contact  .avatar-wrapper {
+  box-shadow: 1px 1px 15px -5px black;
+  border-radius: 50%;
+}
+
+.profile-pic {
+  height: 100%;
+  width: 100%;
+  transition: all .3s ease;
+}
+.profile-pic:after{
+  font-family: FontAwesome;
+  content: "\f007";
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  font-size: 190px;
+  background: #ecf0f1;
+  color: #34495e;
+  text-align: center;  
+}
+
+.upload-button {
+  position: absolute;
+  top: 0; left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.upload-button .fa-arrow-circle-up{
+  position: absolute;
+  font-size: 234px;
+  top: -17px;
+  left: 0;
+  text-align: center;
+  opacity: 0;
+  transition: all .3s ease;
+  color: #34495e;
+}
+
+.p-image {
+  position: absolute;
+  top: 167px;
+  right: 30px;
+  color: #666666;
+  transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
+}
+.p-image:hover {
+  transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
+}
+/*Avatar CSS end*/
+
+.custom_ticket_icon i {
+  font-size: 20px;
+  padding-right: 10px;
+}
+
+.main_title {
+  color: #fff;
+}
+
+.select-dropdown {
+  border-color: #69696b;
+  border-radius: 6px;
+  padding: 2px;
+}

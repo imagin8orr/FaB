@@ -1,0 +1,86 @@
+<div id="app">
+    <div class="main-wrapper container">
+        <div class="navbar-bg"></div>
+
+        <app-header></app-header>
+        <!-- Main Content -->
+        <div class="main-content">
+            <section class="section">
+                <div class="row">
+                    <!-- <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>Card List</h4>
+                            </div>
+                            <div class="card-body p-0">
+                                <div class="table-responsive">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Card</th>
+                                                <th scope="col">Name</th>
+                                                <th scope="col">Actions</th>
+                                            </tr>
+
+                                        </thead>
+                                        <tr *ngFor="let item of cardsPagination; trackBy: trackById">
+                                            <td data-label="Card">
+                                                <a target="_blank" [href]="item.image_url"> <img [alt]="item.name"
+                                                        [src]="item.image_url" class="rounded-circle" width="40"
+                                                        height="40" data-toggle="tooltip" [title]="item.name">
+                                                </a>
+                                            </td>
+                                            <td data-label="Name">{{item.name}}</td>
+                                            <td data-label="Actions">
+                                                <button [routerLink]="['/card/view', item.card_id]" title="View Card"
+                                                    class="btn btn-icon btn-info ml-2">
+                                                    <i class="far fa-eye"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+
+
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>Card List</h4>
+                            </div>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Card</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of cardsPagination; trackBy: trackById">
+                                        <td data-label="Card">
+                                            <a target="_blank" [href]="item.image_url">
+                                                <img [alt]="item.name" [src]="item.image_url" class="custom-image" data-toggle="tooltip" [title]="item.name"
+                                                    onerror="this.src='assets/img/img01.jpg'">
+                                            </a>
+                                        </td>
+                                        <td data-label="Name">{{item.name}}</td>
+                                        <td data-label="Actions">
+                                            <button [routerLink]="['/card/view', item.card_id]" title="View Card"
+                                                class="btn btn-icon btn-info ml-2">
+                                                <i class="far fa-eye"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>

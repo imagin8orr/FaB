@@ -1,0 +1,65 @@
+<div id="app">
+  <section class="section">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
+          <div class="login-brand">
+            <h1>FaB</h1>
+          </div>
+          <div class="mt-3 mb-3 text-muted text-center">
+            Don't have an account? <a [routerLink]="['/signup']">Create One</a>
+          </div>
+          <div class="card card-primary">
+            <div class="card-header">
+              <h4>Login</h4>
+            </div>
+        
+            <div class="card-body">
+              <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <div class="form-group col-12">
+                  <label for="email">Email<span class="red_c">*</span></label>
+                  <input id="email" formControlName="email" type="email" class="form-control" name="email">
+                  <div *ngIf="submitted && f.email.errors" class="invalid-feedback-custom">
+                    <div *ngIf="f.email.errors.required">Email is required</div>
+                    <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                  </div>
+                </div>
+
+
+
+                <div class="form-group col-12">
+                  <div class="d-block">
+                    <label for="password" class="control-label">Password<span class="red_c">*</span></label>
+                    <div class="float-right">
+                      <a [routerLink]="['/forgot']" class="text-small">
+                        Forgot Password?
+                      </a>
+                    </div>
+                  </div>
+
+                  <input id="password" formControlName="password" type="password" class="form-control" name="password">
+                  <div *ngIf="submitted && f.password.errors" class="invalid-feedback-custom">
+                    <div *ngIf="f.password.errors.required">Password is required</div>
+                    <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+                  </div>
+
+                </div>
+
+
+                <div class="form-group">
+                  <button type="submit" class="btn btn-primary btn-lg btn-block">
+                    Login
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<app-loader [loading]="this.loading"></app-loader>

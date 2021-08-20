@@ -7,10 +7,14 @@ var cors = require("cors");
 var bodyParser = require('body-parser');
 
 var cardRouter = require('./routes/card');
+var webhookRouter = require('./routes/webhook');
+var userRouter = require('./routes/user');
 
 global.dotenv = require('dotenv').config({
   path: `./env-files/${process.env.NODE_ENV || 'development'}.env`,
 });
+
+global._messages = require('./helpers/messages');
 console.log(process.env.NODE_ENV);
 var app = express();
 
@@ -25,12 +29,16 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use('/public', express.static('public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+var checkJwtAuthentication = require('./middleware/authentication');
 
-app.use('/card', cardRouter);
+
+app.use('/card', checkJwtAuthentication, cardRouter);
+app.use('/webhook', webhookRouter);
+app.use('/user', checkJwtAuthentication, userRouter);
 
 app.get('/', function (req, res) {
   res.sendFile(__dirname + '/index.html');

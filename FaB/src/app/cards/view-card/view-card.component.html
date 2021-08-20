@@ -1,0 +1,69 @@
+<div id="app">
+    <div class="main-wrapper container">
+        <div class="navbar-bg"></div>
+
+        <app-header></app-header>
+        <!-- Main Content -->
+        <div class="main-content">
+            <section class="section">
+                <div class="text-right mb-4">
+                    <button [routerLink]="['/']" class="btn btn-success" title="Back to Card">
+                        <i class="fas fa-arrow-left"></i> Back
+                    </button>
+                </div>
+                <div class="row" *ngIf="viewData">         
+
+                    <div class="col-12 col-md-4 col-lg-4">
+                        <article class="article article-style-c">
+                            <a [href]="viewData.image_url" target="_blank">
+                                <img class="responsive-imge" [src]="viewData.image_url" />
+                            </a>
+
+                        </article>
+                    </div>
+                    <div class="col-12 col-md-4 col-lg-4">
+                        <article class="article article-style-c">
+                            <div class="article-details">
+                                <h6>Card Name</h6>
+                                <p>{{viewData.name}}</p>
+                                <h6>Type</h6>
+                                <p>{{viewData.type}}</p>
+                                <h6>Class</h6>
+                                <p>{{viewData.class}}</p>
+                                <h6>Set</h6>
+                                <p>{{viewData.class}}</p>
+                                <h6>Rarity</h6>
+                                <p>{{viewData.rarity}}</p>
+                                <h6>Tags</h6>
+                                <p>{{viewData.tags}}</p>
+
+                            </div>
+                        </article>
+                    </div>
+
+                    <div class="col-12 col-md-4 col-lg-4">
+                        <article class="article article-style-c">
+                            <div class="article-details">
+                                <h6>Pic</h6>
+                                <p style="line-break: anywhere;">{{viewData.image_url}}</p>
+                                <h6>Cost</h6>
+                                <p>{{viewData.cost}}</p>
+                                <h6>Attack</h6>
+                                <p>{{viewData.attack}}</p>
+                                <h6>Bonus Attack</h6>
+                                <p>{{viewData.bonus_attack}}</p>
+                                <h6>Block</h6>
+                                <p>{{viewData.block}}</p>
+                                <h6>Bonus Block</h6>
+                                <p>{{viewData.bonus_attack}}</p>
+                                <h6>Pitch</h6>
+                                <p>{{viewData.pitch}}</p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+

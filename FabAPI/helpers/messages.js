@@ -1,0 +1,23 @@
+var _messages = [];
+
+_messages[0] = 'Something went wrong, Please Contact Technical Team.';
+_messages[1] = 'Unauthorized access.';
+_messages[2] = 'Data is invalid.';
+_messages[3] = 'is added successfully.';
+_messages[4] = 'is edited successfully.';
+_messages[5] = 'is deleted successfully.';
+_messages[6] = 'You are successfully logged in';
+_messages[7] = 'Username or Password not found.';
+_messages[8] = 'Record not exists.';
+_messages[9] = 'Invalid User Type!';
+_messages[10] = 'Email is already exist.';
+_messages[11] = 'Incorrect password';
+_messages[12] = ' not found!';
+_messages[13] = ' successfully!';
+_messages[14] = ' is already exist.';
+_messages[15] = "can't be null!";
+_messages[16] = "Verification Needed!";
+_messages[17] = "Token Expired!";
+_messages[18] = "Permission Update Required!";
+_messages[19] = "Scope can't empty!";
+module.exports = _messages;

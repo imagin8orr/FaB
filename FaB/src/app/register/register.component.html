@@ -1,0 +1,96 @@
+<div id="app">
+  <section class="section">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-8 offset-lg-2 col-xl-8 offset-xl-2">
+          <div class="login-brand">
+            <h1>FaB</h1>
+          </div>
+
+          <div class="mt-3 mb-3 text-muted text-center">
+            You already have one? <a [routerLink]="['/login']">Login</a>
+          </div>
+          <div class="card card-primary">
+            <div class="card-header">
+              <h4>Create Your Account</h4>
+            </div>
+
+            <div class="card-body">
+              <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                <div class="row">
+                  <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <label for="email">Email<span class="red_c">*</span></label>
+                    <input id="email" formControlName="email" type="email" class="form-control" name="email">
+                    <div *ngIf="submitted && f.email.errors" class="invalid-feedback-custom">
+                      <div *ngIf="f.email.errors.required">Email is required</div>
+                      <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                    </div>
+                  </div>
+                  <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <label for="username">Full Name</label>
+                    <input id="username" formControlName="username" type="text" class="form-control" name="username">
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <label for="screen_name">Screen Name<span class="red_c">*</span></label>
+                    <input id="screen_name" formControlName="screen_name" type="text" class="form-control"
+                      name="screen_name">
+                    <div *ngIf="submitted && f.screen_name.errors" class="invalid-feedback-custom">
+                      <div *ngIf="f.screen_name.errors.required">Screen Name is required</div>
+                    </div>
+                  </div>
+                  <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <label for="phone">Mobile no<span class="red_c">*</span></label>
+                    <input id="phone" autocomplete="off" formControlName="phone" type="phone" class="form-control"
+                      name="phone" (keypress)="mobile_number_validation($event)" maxlength="15">
+                    <div *ngIf="submitted && f.phone.errors" class="invalid-feedback-custom">
+                      <div *ngIf="f.phone.errors.required">Mobile no is required</div>
+                    </div>
+                  </div>
+                  <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <label for="address">Address</label>
+                    <input id="address" type="text" class="form-control" name="address">
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <label for="password" class="d-block">Password<span class="red_c">*</span></label>
+                    <input id="password" formControlName="password" type="password" class="form-control"
+                      name="password">
+                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback-custom">
+                      <div *ngIf="f.password.errors.required">Password is required</div>
+                      <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+                    </div>
+                  </div>
+
+                  <div class="form-group col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <label for="password2" class="d-block">Password Confirmation<span class="red_c">*</span></label>
+                    <input id="password2" formControlName="confirmPassword" type="password" class="form-control"
+                      name="password-confirm">
+
+                    <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback-custom">
+                      <div *ngIf="f.confirmPassword.errors.required">Confirm Password is required</div>
+                      <div *ngIf="f.confirmPassword.errors.mustMatch">Passwords must match</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <button type="submit" class="btn btn-primary btn-lg btn-block">
+                    Register
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<app-loader [loading]="this.loading"></app-loader>

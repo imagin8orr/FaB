@@ -1,0 +1,92 @@
+<div id="app">
+    <div class="main-wrapper container">
+        <div class="navbar-bg"></div>
+
+        <app-header></app-header>
+        <!-- Main Content -->
+        <div class="main-content">
+            <section class="section">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>My Card List</h4>
+                                <div class="card-header-action pl-3">
+                                    <button class="btn btn-success" [routerLink]="['/card/add']" title="Add New Card">
+                                        <i class="fas fa-plus"></i> Add
+                                    </button>
+                                </div>
+                            </div>
+                            <!-- <table class="table table-striped">
+                                        <tr>
+                                            <th>Card Name</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                        <tr *ngFor="let item of cardsPagination; trackBy: trackById">
+                                            <td>{{item.name}}</td>
+
+                                            <td>
+                                                <button [routerLink]="['/card/edit', item.card_id]"
+                                                    data-toggle="tooltip" title="Edit Card"
+                                                    class="btn btn-icon btn-primary"><i class="far fa-edit"></i>
+                                                </button>
+
+                                                <button [routerLink]="['/card/view', item.card_id]"
+                                                    data-toggle="tooltip" title="View Card"
+                                                    class="btn btn-icon btn-info ml-2">
+                                                    <i class="far fa-eye"></i>
+                                                </button>
+
+                                                <button (click)="callDelete(item.card_id)" data-toggle="tooltip"
+                                                    title="Delete Card" class="btn btn-icon btn-danger ml-2">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+
+                                    </table> -->
+
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Card</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of cardsPagination; trackBy: trackById">
+                                        <td data-label="Card">
+                                            <a target="_blank" [href]="item.image_url">
+                                                <img [alt]="item.name" [src]="item.image_url" class="custom-image" data-toggle="tooltip" [title]="item.name"
+                                                    onerror="this.src='assets/img/img01.jpg'">
+                                            </a>
+                                        </td>
+                                        <td data-label="Name">{{item.name}}</td>
+                                        <td data-label="Actions">
+                                            <button [routerLink]="['/card/edit', item.card_id]" data-toggle="tooltip"
+                                                title="Edit Card" class="btn btn-icon btn-primary"><i
+                                                    class="far fa-edit"></i>
+                                            </button>
+
+                                            <button [routerLink]="['/card/view', item.card_id]" data-toggle="tooltip"
+                                                title="View Card" class="btn btn-icon btn-info ml-2">
+                                                <i class="far fa-eye"></i>
+                                            </button>
+
+                                            <button (click)="callDelete(item.card_id)" data-toggle="tooltip"
+                                                title="Delete Card" class="btn btn-icon btn-danger ml-2">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+        </div>
+    </div>
+</div>

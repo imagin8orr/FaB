@@ -1,0 +1,147 @@
+/**
+ *
+ * You can write your CSS code here, DO NOT touch the default JavaScript file
+ * because it will make it harder for you to update.
+ * 
+ */
+
+/*# sourceMappingURL=custom.css.map */
+
+.red_c {
+	color: red;
+    margin-left: 2px;
+    font-weight: 800;
+}
+
+.invalid-feedback-custom {
+	font-size: 12px;
+	font-weight: 600;
+	letter-spacing: 1px;
+	width: 100%;
+	margin-top: .25rem;
+	color: #dc3545;
+}
+
+.none-custom {
+	display: none;
+}
+
+.selected-item a {
+	padding-left: 10px !important;
+}
+
+.multiselect-dropdown .dropdown-btn .selected-item {
+	max-width:-webkit-fill-available !important;
+	margin-top: 2px;
+}
+
+
+/* Responsive table CSS start */
+
+
+table {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    table-layout: fixed;
+  }
+  
+  table caption {
+    font-size: 1.5em;
+    margin: .5em 0 .75em;
+  }
+  
+  table tr {
+    padding: .35em;
+  }
+  
+  table th,
+  table td {
+    padding: .625em;
+    text-align: center;
+  }
+  
+  table th {
+    font-size: .85em;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+  }
+
+  .custom-image {
+    width: 60px;
+    height: 50px;
+    object-fit: cover;
+    object-position: 100% 0%;
+  }
+  
+  @media screen and (max-width: 600px) {
+    table {
+      border: 0;
+    }
+  
+    table caption {
+      font-size: 1.3em;
+    }
+    
+    table thead {
+      border: none;
+      clip: rect(0 0 0 0);
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      padding: 0;
+      position: absolute;
+      width: 1px;
+    }
+    
+    table tr {
+      border-bottom: 3px solid #ddd;
+      display: block;
+      margin-bottom: .625em;
+    }
+    
+    table td {
+      border-bottom: 1px solid #ddd;
+      display: block;
+      font-size: .8em;
+      text-align: right;
+    }
+    
+    table td::before {
+      /*
+      * aria-label has no advantage, it won't be read inside a table
+      content: attr(aria-label);
+      */
+      content: attr(data-label);
+      float: left;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+    
+    table td:last-child {
+      border-bottom: 0;
+    }
+
+    table .btn {
+      font-weight: 600;
+      line-height: 10px;
+      padding: .2rem .3rem;
+    }
+    .custom-image {
+      width: 40px;
+      height: 30px;
+    }
+  }
+
+  /* Responsive table CSS end */
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { MainComponent } from './main/main.component';
 
 @Component({
   selector: 'app-root',
@@ -7,5 +6,5 @@ import { MainComponent } from './main/main.component';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'FaB CMS';
+  title = 'FaB';
 }

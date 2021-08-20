@@ -1,0 +1,159 @@
+<nav class="navbar navbar-expand-lg main-navbar">
+    <a [routerLink]="['/login']" class="navbar-brand">FaB</a>
+
+    <div class="nav-collapse">
+        <a *ngIf="isLogin" class="sidebar-gone-show nav-collapse-toggle nav-link" href="#">
+            <i class="fas fa-ellipsis-v"></i>
+        </a>
+        <ul class="navbar-nav">
+            <li class="nav-item active"><a [routerLink]="['/']" class="nav-link">Cards</a></li>
+            <li class="nav-item active" *ngIf="isLogin"><a [routerLink]="['/my-cards']" class="nav-link">My Cards</a>
+            </li>
+        </ul>
+    </div>
+
+    <form class="form-inline ml-auto">
+        <a *ngIf="!isLogin" class="btn " [routerLink]="['/login']">Login</a>
+    </form>
+
+
+    <ul class="navbar-nav navbar-right" *ngIf="isLogin">
+        <li class="dropdown"><a href="#" data-toggle="dropdown"
+                class="nav-link dropdown-toggle nav-link-lg nav-link-user">
+                <img alt="image" src="{{userData.profile ? userData.profile : 'assets/img/avatar-1.png'}}"
+                    onerror="this.src='assets/img/avatar-1.png'" class="rounded-circle mr-1">
+                <div class="d-sm-none d-lg-inline-block">{{userData.username ? userData.username : ''}}</div>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right">
+                <a (click)="onClick()" class="dropdown-item has-icon" data-toggle="modal" data-target="#right_modal">
+                    <i class="far fa-user"></i> Profile
+                </a>
+                <div class="dropdown-divider"></div>
+                <a (click)="logout()" class="dropdown-item has-icon text-danger">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </div>
+        </li>
+    </ul>
+</nav>
+
+<div class="modal modal-right fade" id="right_modal" tabindex="-1" role="dialog" aria-labelledby="right_modal"
+    *ngIf="isLogin">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Profile</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="col-12">
+                    <div class="card">
+                        <form [formGroup]="profileForm">
+
+                            <div class="row">
+                                <div class="col-12 form-group">
+                                    <div class="avatar-wrapper avatar-item mb-0">
+                                        <img class="profile-pic"
+                                            src="{{userData.profile ? userData.profile : 'assets/img/avatar-1.png'}}"
+                                            onerror="this.src='assets/img/avatar-1.png'" alt="image"
+                                            id="edit_profile_img" (change)="onFileChange($event)">
+                                        <div class="upload-button" (change)="onFileChange($event)">
+                                            <i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="avatar-badge" title="Edit profile" data-toggle="tooltip"
+                                            data-original-title="Author"><i class="fas fa-pencil-alt"></i></div>
+                                        <input class="file-upload" type="file" accept="image/*"
+                                            (change)="onFileChange($event)" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col-12">
+                                    <label for="email">Email<span class="red_c">*</span></label>
+                                    <input id="email" formControlName="email" type="email" class="form-control"
+                                        name="email">
+                                    <div *ngIf="submitted && f.email.errors" class="invalid-feedback-custom">
+                                        <div *ngIf="f.email.errors.required">Email is required</div>
+                                        <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-12">
+                                    <label for="username">Full Name</label>
+                                    <input id="username" formControlName="username" type="text" class="form-control"
+                                        name="username">
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col-12">
+                                    <label for="screen_name">Screen Name<span class="red_c">*</span></label>
+                                    <input id="screen_name" formControlName="screen_name" type="text"
+                                        class="form-control" name="screen_name">
+                                    <div *ngIf="submitted && f.screen_name.errors" class="invalid-feedback-custom">
+                                        <div *ngIf="f.screen_name.errors.required">Screen Name is required</div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-12">
+                                    <label for="phone">Mobile no<span class="red_c">*</span></label>
+                                    <input id="phone" formControlName="phone" type="phone" class="form-control"
+                                        name="phone" autocomplete="off" (keypress)="mobile_number_validation($event)"
+                                        maxlength="15">
+                                    <div *ngIf="submitted && f.phone.errors" class="invalid-feedback-custom">
+                                        <div *ngIf="f.phone.errors.required">Mobile no is required</div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                    <label for="address">Address</label>
+                                    <input id="address" type="text" class="form-control" name="address">
+                                </div>
+                            </div>
+
+                            <div class="row">
+
+                                <div class="form-group col-12">
+                                    <h6>Change Password</h6>
+                                    <p> Leave blank to keep the same password</p>
+                                    <label for="password" class="d-block">Password</label>
+                                    <input id="password" formControlName="password" type="password" class="form-control"
+                                        name="password">
+                                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback-custom">
+                                        <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-12">
+                                    <label for="password2" class="d-block">Password Confirmation</label>
+                                    <input id="password2" formControlName="confirmPassword" type="password"
+                                        class="form-control" name="password-confirm">
+
+                                    <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback-custom">
+                                        <div *ngIf="f.confirmPassword.errors.mustMatch">Passwords must match</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- <div class="form-group">
+                                <button type="submit" class="btn btn-primary btn-lg btn-block">
+                                    Save
+                                </button>
+                            </div> -->
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer modal-footer-fixed">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" [disabled]="profileForm.invalid"
+                    [class]="profileForm.invalid ? 'btn btn-primary disabled' : 'btn btn-primary'" (click)="onSubmit()">
+                    <i *ngIf="loading" class="fa fa-spinner fa-spin pl-2"></i>Save changes
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-loader [loading]="this.loading"></app-loader>
