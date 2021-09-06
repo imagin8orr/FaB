@@ -9,6 +9,8 @@ import { ViewCardComponent } from './cards/view-card/view-card.component';
 import { RegisterComponent } from './register/register.component';
 import { AuthenticationGuard } from './guard/authentication.guard';
 import { MyCardsComponent } from './cards/my-cards/my-cards.component';
+import { DeckListComponent } from './deck/deck-list/deck-list.component';
+import { ViewDeckComponent } from './deck/view-deck/view-deck.component';
 
 const routes: Routes = [
   { path: '', component: CardsComponent },
@@ -20,6 +22,8 @@ const routes: Routes = [
   { path: 'card/add', component: AddEditCardComponent, canActivate: [AuthenticationGuard] },
   { path: 'card/edit/:id', component: AddEditCardComponent, canActivate: [AuthenticationGuard] },
   { path: 'card/view/:id', component: ViewCardComponent },
+  { path: 'decks', component: DeckListComponent },
+  { path: 'deck/:id', component: ViewDeckComponent },
 ];
 
 @NgModule({

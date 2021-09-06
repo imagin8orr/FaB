@@ -20,6 +20,8 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import { ViewCardComponent } from './cards/view-card/view-card.component';
 import { RegisterComponent } from './register/register.component';
 import { MyCardsComponent } from './cards/my-cards/my-cards.component';
+import { DeckListComponent } from './deck/deck-list/deck-list.component';
+import { ViewDeckComponent } from './deck/view-deck/view-deck.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { MyCardsComponent } from './cards/my-cards/my-cards.component';
     ResetPasswordComponent,
     ViewCardComponent,
     RegisterComponent,
-    MyCardsComponent
+    MyCardsComponent,
+    DeckListComponent,
+    ViewDeckComponent
   ],
   imports: [
     BrowserModule,

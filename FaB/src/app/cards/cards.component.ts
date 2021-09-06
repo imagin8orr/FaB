@@ -14,10 +14,10 @@ export class CardsComponent implements OnInit {
   constructor(private cardService: CardService, public toastrService: ToastrService) { }
 
   ngOnInit() {
-    this.loadAllcards();
+    this.loadAllCards();
   }
 
-  loadAllcards() {
+  loadAllCards() {
     this.cardService.getCards().subscribe(result => {
       this.cardsPagination = result.data;
     }, err => {

@@ -9,6 +9,7 @@ var bodyParser = require('body-parser');
 var cardRouter = require('./routes/card');
 var webhookRouter = require('./routes/webhook');
 var userRouter = require('./routes/user');
+var deckRouter = require('./routes/deck');
 
 global.dotenv = require('dotenv').config({
   path: `./env-files/${process.env.NODE_ENV || 'development'}.env`,
@@ -39,6 +40,7 @@ var checkJwtAuthentication = require('./middleware/authentication');
 app.use('/card', checkJwtAuthentication, cardRouter);
 app.use('/webhook', webhookRouter);
 app.use('/user', checkJwtAuthentication, userRouter);
+app.use('/deck', checkJwtAuthentication, deckRouter);
 
 app.get('/', function (req, res) {
   res.sendFile(__dirname + '/index.html');

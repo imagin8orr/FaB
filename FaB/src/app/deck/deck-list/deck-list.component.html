@@ -10,34 +10,37 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4>Card List</h4>
+                                <h4>My Deck List</h4>
+                                <div class="card-header-action pl-3">
+                                    <button class="btn btn-success" [routerLink]="['/deck/1']" title="Add New Deck">
+                                        <i class="fas fa-plus"></i> Add
+                                    </button>
+                                </div>
                             </div>
                             <table>
-                                <thead>
+                                <thead *ngIf="decksPagination?.length > 1">
                                     <tr>
-                                        <th scope="col">Card</th>
                                         <th scope="col">Name</th>
                                         <th scope="col">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let item of cardsPagination; trackBy: trackById">
-                                        <td data-label="Card">
-                                            <a target="_blank" [href]="item.image_url">
-                                                <img [alt]="item.name" [src]="item.image_url" class="custom-image" data-toggle="tooltip" [title]="item.name"
-                                                    onerror="this.src='assets/img/img01.jpg'">
-                                            </a>
-                                        </td>
+                                    <tr *ngFor="let item of decksPagination; trackBy: trackById">                                    
                                         <td data-label="Name">{{item.name}}</td>
                                         <td data-label="Actions">
-                                            <button [routerLink]="['/card/view', item.card_id]" title="View Card"
+                                            <button [routerLink]="['/deck/', item.deck_id]" title="View Deck"
                                                 class="btn btn-icon btn-info ml-2">
                                                 <i class="far fa-eye"></i>
                                             </button>
                                         </td>
                                     </tr>
+                         
                                 </tbody>
+                                <tr *ngIf="decksPagination?.length < 1">
+                                    <td>No Decks Found!</td>
+                                </tr>
                             </table>
+                      
                         </div>
                     </div>
                 </div>
