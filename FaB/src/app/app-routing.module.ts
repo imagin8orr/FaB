@@ -11,6 +11,7 @@ import { AuthenticationGuard } from './guard/authentication.guard';
 import { MyCardsComponent } from './cards/my-cards/my-cards.component';
 import { DeckListComponent } from './deck/deck-list/deck-list.component';
 import { ViewDeckComponent } from './deck/view-deck/view-deck.component';
+import { TestComponent } from './deck/test/test.component';
 
 const routes: Routes = [
   { path: '', component: CardsComponent },
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path: 'card/view/:id', component: ViewCardComponent },
   { path: 'decks', component: DeckListComponent },
   { path: 'deck/:id', component: ViewDeckComponent },
+  { path: 'test', component: TestComponent },
 ];
 
 @NgModule({

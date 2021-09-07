@@ -22,6 +22,8 @@ import { RegisterComponent } from './register/register.component';
 import { MyCardsComponent } from './cards/my-cards/my-cards.component';
 import { DeckListComponent } from './deck/deck-list/deck-list.component';
 import { ViewDeckComponent } from './deck/view-deck/view-deck.component';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import { TestComponent } from './deck/test/test.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,8 @@ import { ViewDeckComponent } from './deck/view-deck/view-deck.component';
     RegisterComponent,
     MyCardsComponent,
     DeckListComponent,
-    ViewDeckComponent
+    ViewDeckComponent,
+    TestComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +57,8 @@ import { ViewDeckComponent } from './deck/view-deck/view-deck.component';
     }),
     LoaderModule,
     NgMultiSelectDropDownModule.forRoot(),
-    TagInputModule
+    TagInputModule,
+    DragDropModule
   ],
   providers: [],
   bootstrap: [AppComponent]

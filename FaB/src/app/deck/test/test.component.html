@@ -1,0 +1,85 @@
+<div id="app">
+    <div class="main-wrapper container">
+        <div class="navbar-bg"></div>
+
+        <app-header></app-header>
+        <!-- Main Content -->
+        <div class="main-content">
+            <section class="section">
+                <div class="row">
+                    <div class="form-group col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                        <input placeholder="Deck Name" [(ngModel)]="name" id="name" type="text"
+                            [class]="!name_required ? 'form-control' : 'error-custom form-control'">
+                        <div *ngIf="name_required" class="invalid-feedback-custom">
+                            Name is required
+                        </div>
+                    </div>
+                    <div class="form-group col-xs-12 col-sm-12 col-md-9 col-lg-9 text-right">
+                        <button type="submit" class="btn btn-primary" (click)="saveDeck()">
+                            Save
+                        </button>
+                    </div>
+                </div>
+
+                <div cdkDropListGroup>
+
+                    <div id="main-deck" cdkDropList [(cdkDropListData)]="decks[0].cards"
+                        (cdkDropListDropped)="drop($event)" (cdkDragExited)="exited($event)"
+                        class="card-container deck-container">
+
+                        <div class="card" [id]="'deck_'+card.card_id"
+                            *ngFor="let card of decks[0].cards; let i = index">
+                            <article class="article article-style-b text-center">
+                                <!-- <a title="Remove Card" (click)="removeItem(i, 'deck_'+card.card_id)"
+                                    class="btn btn-icon btn-sm btn-danger mb-2" tabindex="0">
+                                    <i class="fas fa-minus"></i>
+                                </a> -->
+                                <div class="article-header">
+                                    <div class="article-image" [style.background-image]="'url(' +card.image_url + ')'">
+                                    </div>
+                                </div>
+                                <div class="article-details">
+                                    <div class="article-title">
+                                        <h6>{{card.name}} (3)
+                                            <a title="Remove Card" (click)="removeItem(i, 'deck_'+card.card_id)"
+                                                class="btn btn-icon btn-sm btn-danger mt-1" tabindex="0">
+                                                <i class="fas fa-minus"></i>
+                                            </a>
+                                        </h6>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                    <h2 class="section-title">All Cards</h2>
+
+                    <div cdkDropList [cdkDropListData]="cards" class="card-container all-card-container">
+
+                        <div class="card" [id]="card.card_id" *ngFor="let card of cards; let i = index" cdkDrag>
+                            <article class="article article-style-b text-center">
+                                <!-- <button title="Add Card" (click)="addItem(i)"
+                                    class="btn btn-icon btn-sm btn-success mb-2"><i class="fas fa-plus"></i>
+                                </button> -->
+                                <div class="article-header">
+                                    <div class="article-image" [style.background-image]="'url(' +card.image_url + ')'">
+                                    </div>
+                                </div>
+                                <div class="article-details">
+                                    <div class="article-title">
+                                        <h6>{{card.name}} (3)
+                                            <button title="Add Card" (click)="addItem(i)"
+                                                class="btn btn-icon btn-sm btn-success mt-1"><i class="fas fa-plus"></i>
+                                            </button>
+                                        </h6>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+        </div>
+    </div>
+</div>

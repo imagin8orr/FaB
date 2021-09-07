@@ -7,467 +7,104 @@
         <div class="main-content">
             <section class="section">
 
+                <div cdkDropListGroup>
+                    <div class="example-container">
+                        <h2>To do</h2>
+                        <div cdkDropList [cdkDropListData]="todo" class="example-list"
+                            (cdkDropListDropped)="drop($event)">
+                            <div class="example-box" *ngFor="let item of todo" cdkDrag>{{item}}</div>
+                        </div>
+                    </div>
+
+                    <div class="example-container">
+                        <h2>Done</h2>
+
+                        <div cdkDropList [cdkDropListData]="done" class="example-list"
+                            (cdkDropListDropped)="drop($event)">
+                            <div class="example-box" *ngFor="let item of done" cdkDrag>{{item}}</div>
+                        </div>
+                    </div>
+                </div>
+
                 <!--Carousel Wrapper-->
                 <div id="multi-item-example" class="carousel slide carousel-multi-item" data-ride="carousel">
 
-                    <!--Controls-->
-                    <!-- <div class="controls-top">
-                            <a class="btn-floating" href="#multi-item-example" data-slide="prev"><i
-                                    class="fa fa-chevron-left"></i></a>
-                            <a class="btn-floating" href="#multi-item-example" data-slide="next"><i
-                                    class="fa fa-chevron-right"></i></a>
-                        </div> -->
-                    <!--/.Controls-->
-
-                    <!--Indicators-->
                     <ol class="carousel-indicators">
                         <li data-target="#multi-item-example" data-slide-to="0" class="active"></li>
                         <li data-target="#multi-item-example" data-slide-to="1"></li>
                         <li data-target="#multi-item-example" data-slide-to="2"></li>
                     </ol>
-                    <!--/.Indicators-->
 
-                    <!--Slides-->
                     <div class="carousel-inner" role="listbox">
-
-                        <!--First slide-->
-                        <div class="carousel-item active">
+                        <div class="carousel-item" [class]="i == 0 ? 'active' : ''"
+                            *ngFor="let deck of decks; let i=index">
                             <div class="row">
-                                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                                    <article class="article article-style-b">
-                                        <div class="article-header">
-                                            <div class="article-image" data-background="../assets/img/news/img13.jpg">
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12"
+                                    *ngFor="let card of deck.cards; let i=index">
+                                    <div class="card" draggable="true">
+                                        <article class="article article-style-b">
+                                            <div class="article-header">
+                                                <div class="article-image"
+                                                    data-background="../assets/img/news/img13.jpg">
+                                                </div>
                                             </div>
-                                            <div class="article-badge">
-                                                <div class="article-badge-item bg-danger"><i class="fas fa-fire"></i>
-                                                    Trending</div>
+                                            <div class="article-details">
+                                                <div class="article-title">
+                                                    <h2><a href="#">{{card.name}}</a>
+                                                    </h2>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="article-details">
-                                            <div class="article-title">
-                                                <h2><a href="#">Excepteur sint occaecat cupidatat non proident</a>
-                                                </h2>
-                                            </div>
-                                        </div>
-                                    </article>
-                                </div>
-
-                                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 clearfix d-none d-md-block">
-                                    <article class="article article-style-b">
-                                        <div class="article-header">
-                                            <div class="article-image" data-background="../assets/img/news/img13.jpg">
-                                            </div>
-                                            <div class="article-badge">
-                                                <div class="article-badge-item bg-danger"><i class="fas fa-fire"></i>
-                                                    Trending</div>
-                                            </div>
-                                        </div>
-                                        <div class="article-details">
-                                            <div class="article-title">
-                                                <h2><a href="#">Excepteur sint occaecat cupidatat non proident</a>
-                                                </h2>
-                                            </div>
-                                        </div>
-                                    </article>
-                                </div>
-
-                                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 clearfix d-none d-md-block">
-                                    <article class="article article-style-b">
-                                        <div class="article-header">
-                                            <div class="article-image" data-background="../assets/img/news/img13.jpg">
-                                            </div>
-                                            <div class="article-badge">
-                                                <div class="article-badge-item bg-danger"><i class="fas fa-fire"></i>
-                                                    Trending</div>
-                                            </div>
-                                        </div>
-                                        <div class="article-details">
-                                            <div class="article-title">
-                                                <h2><a href="#">Excepteur sint occaecat cupidatat non proident</a>
-                                                </h2>
-                                            </div>
-                                        </div>
-                                    </article>
-                                </div>
-
-                                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                                    <article class="article article-style-b">
-                                        <div class="article-header">
-                                            <div class="article-image" data-background="../assets/img/news/img13.jpg">
-                                            </div>
-                                            <div class="article-badge">
-                                                <div class="article-badge-item bg-danger"><i class="fas fa-fire"></i>
-                                                    Trending</div>
-                                            </div>
-                                        </div>
-                                        <div class="article-details">
-                                            <div class="article-title">
-                                                <h2><a href="#">Excepteur sint occaecat cupidatat non proident</a>
-                                                </h2>
-                                            </div>
-                                        </div>
-                                    </article>
+                                        </article>
+                                    </div>
                                 </div>
                             </div>
-
                         </div>
-                        <!--/.First slide-->
-
-                        <!--Second slide-->
-                        <div class="carousel-item">
+                        <!-- <div class="carousel-item">
                             <div class="row">
-                                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                                    <article class="article article-style-b">
-                                        <div class="article-header">
-                                            <div class="article-image" data-background="../assets/img/news/img13.jpg">
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" *ngFor="let deck of decks[0].cards; let i=index">
+                                    <div class="card" draggable="true">
+                                        <article class="article article-style-b">
+                                            <div class="article-header">
+                                                <div class="article-image"
+                                                    data-background="../assets/img/news/img13.jpg">
+                                                </div>
                                             </div>
-                                            <div class="article-badge">
-                                                <div class="article-badge-item bg-danger"><i class="fas fa-fire"></i>
-                                                    Trending</div>
+                                            <div class="article-details">
+                                                <div class="article-title">
+                                                    <h2><a href="#">{{deck.name}}</a>
+                                                    </h2>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="article-details">
-                                            <div class="article-title">
-                                                <h2><a href="#">Excepteur sint occaecat cupidatat non proident</a>
-                                                </h2>
-                                            </div>
-                                        </div>
-                                    </article>
-                                </div>
-
-                                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 clearfix d-none d-md-block">
-                                    <article class="article article-style-b">
-                                        <div class="article-header">
-                                            <div class="article-image" data-background="../assets/img/news/img13.jpg">
-                                            </div>
-                                            <div class="article-badge">
-                                                <div class="article-badge-item bg-danger"><i class="fas fa-fire"></i>
-                                                    Trending</div>
-                                            </div>
-                                        </div>
-                                        <div class="article-details">
-                                            <div class="article-title">
-                                                <h2><a href="#">Excepteur sint occaecat cupidatat non proident</a>
-                                                </h2>
-                                            </div>
-                                        </div>
-                                    </article>
-                                </div>
-
-                                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 clearfix d-none d-md-block">
-                                    <article class="article article-style-b">
-                                        <div class="article-header">
-                                            <div class="article-image" data-background="../assets/img/news/img13.jpg">
-                                            </div>
-                                            <div class="article-badge">
-                                                <div class="article-badge-item bg-danger"><i class="fas fa-fire"></i>
-                                                    Trending</div>
-                                            </div>
-                                        </div>
-                                        <div class="article-details">
-                                            <div class="article-title">
-                                                <h2><a href="#">Excepteur sint occaecat cupidatat non proident</a>
-                                                </h2>
-                                            </div>
-                                        </div>
-                                    </article>
-                                </div>
-
-                                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                                    <article class="article article-style-b">
-                                        <div class="article-header">
-                                            <div class="article-image" data-background="../assets/img/news/img13.jpg">
-                                            </div>
-                                            <div class="article-badge">
-                                                <div class="article-badge-item bg-danger"><i class="fas fa-fire"></i>
-                                                    Trending</div>
-                                            </div>
-                                        </div>
-                                        <div class="article-details">
-                                            <div class="article-title">
-                                                <h2><a href="#">Excepteur sint occaecat cupidatat non proident</a>
-                                                </h2>
-                                            </div>
-                                        </div>
-                                    </article>
+                                        </article>
+                                    </div>
                                 </div>
                             </div>
-
-                        </div>
-                        <!--/.Second slide-->
-
-                        <!--Third slide-->
-                        <div class="carousel-item">
-
-                            <div class="row">
-                                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                                    <article class="article article-style-b">
-                                        <div class="article-header">
-                                            <div class="article-image" data-background="../assets/img/news/img13.jpg">
-                                            </div>
-                                            <div class="article-badge">
-                                                <div class="article-badge-item bg-danger"><i class="fas fa-fire"></i>
-                                                    Trending</div>
-                                            </div>
-                                        </div>
-                                        <div class="article-details">
-                                            <div class="article-title">
-                                                <h2><a href="#">Excepteur sint occaecat cupidatat non proident</a>
-                                                </h2>
-                                            </div>
-                                        </div>
-                                    </article>
-                                </div>
-
-                                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 clearfix d-none d-md-block">
-                                    <article class="article article-style-b">
-                                        <div class="article-header">
-                                            <div class="article-image" data-background="../assets/img/news/img13.jpg">
-                                            </div>
-                                            <div class="article-badge">
-                                                <div class="article-badge-item bg-danger"><i class="fas fa-fire"></i>
-                                                    Trending</div>
-                                            </div>
-                                        </div>
-                                        <div class="article-details">
-                                            <div class="article-title">
-                                                <h2><a href="#">Excepteur sint occaecat cupidatat non proident</a>
-                                                </h2>
-                                            </div>
-                                        </div>
-                                    </article>
-                                </div>
-
-                                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 clearfix d-none d-md-block">
-                                    <article class="article article-style-b">
-                                        <div class="article-header">
-                                            <div class="article-image" data-background="../assets/img/news/img13.jpg">
-                                            </div>
-                                            <div class="article-badge">
-                                                <div class="article-badge-item bg-danger"><i class="fas fa-fire"></i>
-                                                    Trending</div>
-                                            </div>
-                                        </div>
-                                        <div class="article-details">
-                                            <div class="article-title">
-                                                <h2><a href="#">Excepteur sint occaecat cupidatat non proident</a>
-                                                </h2>
-                                            </div>
-                                        </div>
-                                    </article>
-                                </div>
-
-                                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                                    <article class="article article-style-b">
-                                        <div class="article-header">
-                                            <div class="article-image" data-background="../assets/img/news/img13.jpg">
-                                            </div>
-                                            <div class="article-badge">
-                                                <div class="article-badge-item bg-danger"><i class="fas fa-fire"></i>
-                                                    Trending</div>
-                                            </div>
-                                        </div>
-                                        <div class="article-details">
-                                            <div class="article-title">
-                                                <h2><a href="#">Excepteur sint occaecat cupidatat non proident</a>
-                                                </h2>
-                                            </div>
-                                        </div>
-                                    </article>
-                                </div>
-                            </div>
-
-                        </div>
-                        <!--/.Third slide-->
-
+                        </div> -->
                     </div>
-
-                    <!-- <a class="carousel-control-prev" href="#multi-item-example" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#cmulti-item-example" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a> -->
 
                     <a class="btn-floating carousel-control-prev" href="#multi-item-example" role="button"
                         data-slide="prev"><i class="fa fa-chevron-left"></i></a>
                     <a class="btn-floating carousel-control-next" href="#multi-item-example" role="button"
                         data-slide="next"><i class="fa fa-chevron-right"></i></a>
-                    <!--/.Slides-->
 
                 </div>
-                <!--/.Carousel Wrapper-->
 
 
                 <div class="card-container">
-                    <div class="card" draggable="true">
+                    <div class="card" draggable="true" *ngFor="let card of cards">
                         <article class="article article-style-b">
                             <div class="article-header">
                                 <div class="article-image" data-background="../assets/img/news/img13.jpg">
                                 </div>
-                                <div class="article-badge">
-                                    <div class="article-badge-item bg-danger"><i class="fas fa-fire"></i>
-                                        Trending</div>
-                                </div>
                             </div>
                             <div class="article-details">
                                 <div class="article-title">
-                                    <h2><a href="#">Excepteur sint occaecat cupidatat non proident</a>
+                                    <h2><a href="#">{{card.name}}</a>
                                     </h2>
                                 </div>
                             </div>
                         </article>
                     </div>
-                    <div class="card" draggable="true">
-                        <header class="article-header">
-                            <div>
-                                <div class="category-title">
-                                    Article
-                                    <span class="date">Jan 19, 2020</span>
-                                </div>
-                            </div>
-                            <div class="article-title">
-                                Custom Theme with Angular Material
-                            </div>
-                        </header>
-                        <div class="author">
-                            <div class="profile"></div>
-                            <div class="info">
-                                <div class="caption">Author</div>
-                                <div class="name">David Hose</div>
-                            </div>
-                        </div>
-                        <div class="tags">
-                            <div>JavaScript</div>
-                            <div>HTML</div>
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <header class="article-header">
-                            <div>
-                                <div class="category-title">
-                                    Article
-                                    <span class="date">Jan 19, 2020</span>
-                                </div>
-                            </div>
-                            <div class="article-title">
-                                Custom Theme with Angular Material
-                            </div>
-                        </header>
-                        <div class="author">
-                            <div class="profile"></div>
-                            <div class="info">
-                                <div class="caption">Author</div>
-                                <div class="name">David Hose</div>
-                            </div>
-                        </div>
-                        <div class="tags">
-                            <div>JavaScript</div>
-                            <div>HTML</div>
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <header class="article-header">
-                            <div>
-                                <div class="category-title">
-                                    Article
-                                    <span class="date">Jan 19, 2020</span>
-                                </div>
-                            </div>
-                            <div class="article-title">
-                                Custom Theme with Angular Material
-                            </div>
-                        </header>
-                        <div class="author">
-                            <div class="profile"></div>
-                            <div class="info">
-                                <div class="caption">Author</div>
-                                <div class="name">David Hose</div>
-                            </div>
-                        </div>
-                        <div class="tags">
-                            <div>JavaScript</div>
-                            <div>HTML</div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <header class="article-header">
-                            <div>
-                                <div class="category-title">
-                                    Article
-                                    <span class="date">Jan 19, 2020</span>
-                                </div>
-                            </div>
-                            <div class="article-title">
-                                Custom Theme with Angular Material
-                            </div>
-                        </header>
-                        <div class="author">
-                            <div class="profile"></div>
-                            <div class="info">
-                                <div class="caption">Author</div>
-                                <div class="name">David Hose</div>
-                            </div>
-                        </div>
-                        <div class="tags">
-                            <div>JavaScript</div>
-                            <div>HTML</div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <header class="article-header">
-                            <div>
-                                <div class="category-title">
-                                    Article
-                                    <span class="date">Jan 19, 2020</span>
-                                </div>
-                            </div>
-                            <div class="article-title">
-                                Custom Theme with Angular Material
-                            </div>
-                        </header>
-                        <div class="author">
-                            <div class="profile"></div>
-                            <div class="info">
-                                <div class="caption">Author</div>
-                                <div class="name">David Hose</div>
-                            </div>
-                        </div>
-                        <div class="tags">
-                            <div>JavaScript</div>
-                            <div>HTML</div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <header class="article-header">
-                            <div>
-                                <div class="category-title">
-                                    Article
-                                    <span class="date">Jan 19, 2020</span>
-                                </div>
-                            </div>
-                            <div class="article-title">
-                                Custom Theme with Angular Material
-                            </div>
-                        </header>
-                        <div class="author">
-                            <div class="profile"></div>
-                            <div class="info">
-                                <div class="caption">Author</div>
-                                <div class="name">David Hose</div>
-                            </div>
-                        </div>
-                        <div class="tags">
-                            <div>JavaScript</div>
-                            <div>HTML</div>
-                        </div>
-                    </div>
-
-
                 </div>
 
 

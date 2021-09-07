@@ -35,7 +35,7 @@ $(document).ready(function () {
   });
 
 
-  const slider = document.querySelector('.items');
+  const slider = document.querySelector('.card-container');
   let isDown = false;
   let startX;
   let scrollLeft;
@@ -62,4 +62,114 @@ $(document).ready(function () {
     slider.scrollLeft = scrollLeft - walk;
     console.log(walk);
   });
+
+
+
+  var $hs = $('.deck-container');;
+  var $sLeft = 0;
+  var $hsw = $hs.outerWidth(true);
+
+  $(window).resize(function () {
+    $hsw = $hs.outerWidth(true);
+  });
+
+  function scrollMap($sLeft) {
+    $hs.scrollLeft($sLeft);
+    //$('.js-scroll').animate( { scrollLeft: $sLeft }, 10); // animate
+  }
+
+  $hs.on('mousewheel', function (e) {
+
+    var $max = $hsw * 2 + (-e.originalEvent.wheelDeltaY);
+
+    if ($sLeft > -1) {
+      $sLeft = $sLeft + (-e.originalEvent.wheelDeltaY);
+    } else {
+      $sLeft = 0;
+    }
+    //
+    if ($sLeft > $max) {
+      $sLeft = $max;
+    }
+
+    if (($sLeft > 0) && ($sLeft < $max)) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    scrollMap($sLeft);
+  });
+
+   var $hs = $('.deck-container');;
+  var $sLeft = 0;
+  var $hsw = $hs.outerWidth(true);
+
+  $(window).resize(function () {
+    $hsw = $hs.outerWidth(true);
+  });
+
+  function scrollMap($sLeft) {
+    $hs.scrollLeft($sLeft);
+    //$('.js-scroll').animate( { scrollLeft: $sLeft }, 10); // animate
+  }
+
+  $hs.on('mousewheel', function (e) {
+
+    var $max = $hsw * 2 + (-e.originalEvent.wheelDeltaY);
+
+    if ($sLeft > -1) {
+      $sLeft = $sLeft + (-e.originalEvent.wheelDeltaY);
+    } else {
+      $sLeft = 0;
+    }
+    //
+    if ($sLeft > $max) {
+      $sLeft = $max;
+    }
+
+    if (($sLeft > 0) && ($sLeft < $max)) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    scrollMap($sLeft);
+  });
+
+
+
+
+
+
+  var $hs1 = $('.all-card-container');
+  var $sLeft1 = 0;
+  var $hsw1 = $hs1.outerWidth(true);
+
+  $(window).resize(function () {
+    $hsw1 = $hs1.outerWidth(true);
+  });
+
+  function scrollMap($sLeft1) {
+    $hs1.scrollLeft($sLeft1);
+    //$('.js-scroll').animate( { scrollLeft: $sLeft }, 10); // animate
+  }
+
+  $hs1.on('mousewheel', function (e) {
+
+    var $max = $hsw1 * 2 + (-e.originalEvent.wheelDeltaY);
+
+    if ($sLeft1 > -1) {
+      $sLeft1 = $sLeft1 + (-e.originalEvent.wheelDeltaY);
+    } else {
+      $sLeft1 = 0;
+    }
+    //
+    if ($sLeft1 > $max) {
+      $sLeft1 = $max;
+    }
+
+    if (($sLeft1 > 0) && ($sLeft1 < $max)) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    scrollMap($sLeft1);
+  });
 });
+

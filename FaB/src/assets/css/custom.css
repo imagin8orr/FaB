@@ -135,6 +135,10 @@ table {
 
   /* Responsive table CSS end */
   
+
+  .error-custom {
+    border-color: #e13545
+  }
   
   
   
