@@ -13,6 +13,11 @@ export class ViewCardComponent implements OnInit {
   constructor(private cardService: CardService, private route: ActivatedRoute, public router: Router) { }
 
   ngOnInit() {
+    setTimeout(() => {
+      if (document.getElementById('nav-cards')) {
+        document.getElementById('nav-cards').classList.add('active_nav');
+      }
+    }, 200);
     this.id = this.route.snapshot.params['id'];
     const body = { card_id: this.id }
     this.cardService.getCardInfoById(body).subscribe(result => {

@@ -1,5 +1,5 @@
 export interface Card {
-    id: number;
+    card_id: number;
     type: string;
     class: string;
     set: string;    // alphanumeric

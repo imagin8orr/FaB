@@ -34,7 +34,7 @@ $(document).ready(function () {
     interval: false,
   });
 
-
+  // left and right on drag slider
   const slider = document.querySelector('.card-container');
   let isDown = false;
   let startX;
@@ -65,46 +65,18 @@ $(document).ready(function () {
 
 
 
-  var $hs = $('.deck-container');;
+  var $hs = $('.deck-container');
   var $sLeft = 0;
   var $hsw = $hs.outerWidth(true);
 
-  $(window).resize(function () {
-    $hsw = $hs.outerWidth(true);
-  });
 
-  function scrollMap($sLeft) {
-    $hs.scrollLeft($sLeft);
-    //$('.js-scroll').animate( { scrollLeft: $sLeft }, 10); // animate
-  }
-
-  $hs.on('mousewheel', function (e) {
-
-    var $max = $hsw * 2 + (-e.originalEvent.wheelDeltaY);
-
-    if ($sLeft > -1) {
-      $sLeft = $sLeft + (-e.originalEvent.wheelDeltaY);
-    } else {
-      $sLeft = 0;
-    }
-    //
-    if ($sLeft > $max) {
-      $sLeft = $max;
-    }
-
-    if (($sLeft > 0) && ($sLeft < $max)) {
-      e.preventDefault();
-      e.stopPropagation();
-    }
-    scrollMap($sLeft);
-  });
-
-   var $hs = $('.deck-container');;
-  var $sLeft = 0;
-  var $hsw = $hs.outerWidth(true);
+  var $hsCard = $('.all-card-container');
+  var $sLeftCard = 0;
+  var $hswCard = $hsCard.outerWidth(true);
 
   $(window).resize(function () {
     $hsw = $hs.outerWidth(true);
+    $hswCard = $hsCard.outerWidth(true);
   });
 
   function scrollMap($sLeft) {
@@ -137,39 +109,32 @@ $(document).ready(function () {
 
 
 
-
-  var $hs1 = $('.all-card-container');
-  var $sLeft1 = 0;
-  var $hsw1 = $hs1.outerWidth(true);
-
-  $(window).resize(function () {
-    $hsw1 = $hs1.outerWidth(true);
-  });
-
-  function scrollMap($sLeft1) {
-    $hs1.scrollLeft($sLeft1);
+  function scrollMapCard($sLeftCard) {
+    $hsCard.scrollLeft($sLeftCard);
     //$('.js-scroll').animate( { scrollLeft: $sLeft }, 10); // animate
   }
 
-  $hs1.on('mousewheel', function (e) {
+  $hsCard.on('mousewheel', function (e) {
 
-    var $max = $hsw1 * 2 + (-e.originalEvent.wheelDeltaY);
+    var $maxCard = $hswCard * 2 + (-e.originalEvent.wheelDeltaY);
 
-    if ($sLeft1 > -1) {
-      $sLeft1 = $sLeft1 + (-e.originalEvent.wheelDeltaY);
+    if ($sLeftCard > -1) {
+      $sLeftCard = $sLeftCard + (-e.originalEvent.wheelDeltaY);
     } else {
-      $sLeft1 = 0;
+      $sLeftCard = 0;
     }
     //
-    if ($sLeft1 > $max) {
-      $sLeft1 = $max;
+    if ($sLeftCard > $maxCard) {
+      $sLeftCard = $maxCard;
     }
 
-    if (($sLeft1 > 0) && ($sLeft1 < $max)) {
+    if (($sLeftCard > 0) && ($sLeftCard < $maxCard)) {
       e.preventDefault();
       e.stopPropagation();
     }
-    scrollMap($sLeft1);
+    scrollMapCard($sLeftCard);
   });
+
+
 });
 

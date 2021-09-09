@@ -1,43 +1,19 @@
 .card-container {
     overflow-x: scroll;
     display: flex;
-    padding: 3rem;
+    padding: 2rem 3rem 1.5rem 3rem;
 }
 
 .card {
-    min-width: 300px;
+   min-width: 250px;
     height: 350px;
     border-radius: 16px;
-    background-color: #dddddd;
-    box-shadow: -1rem 0 3rem #b0b0b0;
+    background-color: #eeeded;
+    box-shadow: -1rem 0 3rem #9d9d9d;
     display: flex;
     flex-direction: column;
     padding: 1.5rem;
     transition: 0.2s;
-}
-
-.date {
-    color: #8a8a8a;
-}
-
-.tags {
-    display: flex;
-    flex-wrap: wrap;
-    margin: 1rem 0 1rem;
-}
-
-.tags div {
-    font-size: 9px;
-    font-weight: 700;
-    padding: 4px 10px;
-    border: 3px solid #28242f;
-    border-radius: 2rem;
-}
-
-.card .category-title {
-    font-size: 14px;
-    color: #fff;
-    margin-bottom: 1rem;
 }
 
 .card .article-title {
@@ -55,12 +31,8 @@
     grid-template-columns: 75px 1fr;
 }
 
-.author .info .caption {
-    color: #8a8a8a;
-}
-
 .card:not(:first-child) {
-    margin-left: -130px;
+    margin-left: -90px;
 }
 
 .card:hover {
@@ -73,13 +45,45 @@
 
 
 
+.article, .article-details {
+    background-color: #eeeded;
+    box-shadow:none;
+    padding: 0;
+}
 
+.article .article-header .article-image {
+    background-color: transparent;
+    background-size: contain;
+}
 
+.article .article-header {
+    height: 280px;
+}
 
+.section .section-title {
+    margin: 10px 0 10px 0;
+}
 
+.h6, h6 {
+    font-size: 12px;
+    letter-spacing: 1px;
+    font-weight: 500;
+}
 
+.overflow-protector {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
 
-
+.custom-box-border {
+    border-color: #d3d3d3;
+    border-style: dashed;
+    border-width: 2px;
+    border-radius: 16px;
+}
 
 
 

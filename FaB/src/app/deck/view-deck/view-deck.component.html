@@ -6,110 +6,35 @@
         <!-- Main Content -->
         <div class="main-content">
             <section class="section">
+         
+                <h2 class="section-title"> {{name}} Cards</h2>
 
-                <div cdkDropListGroup>
-                    <div class="example-container">
-                        <h2>To do</h2>
-                        <div cdkDropList [cdkDropListData]="todo" class="example-list"
-                            (cdkDropListDropped)="drop($event)">
-                            <div class="example-box" *ngFor="let item of todo" cdkDrag>{{item}}</div>
-                        </div>
-                    </div>
+                <div id="main-deck" class="card-container deck-container custom-box-border text-center">
 
-                    <div class="example-container">
-                        <h2>Done</h2>
-
-                        <div cdkDropList [cdkDropListData]="done" class="example-list"
-                            (cdkDropListDropped)="drop($event)">
-                            <div class="example-box" *ngFor="let item of done" cdkDrag>{{item}}</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!--Carousel Wrapper-->
-                <div id="multi-item-example" class="carousel slide carousel-multi-item" data-ride="carousel">
-
-                    <ol class="carousel-indicators">
-                        <li data-target="#multi-item-example" data-slide-to="0" class="active"></li>
-                        <li data-target="#multi-item-example" data-slide-to="1"></li>
-                        <li data-target="#multi-item-example" data-slide-to="2"></li>
-                    </ol>
-
-                    <div class="carousel-inner" role="listbox">
-                        <div class="carousel-item" [class]="i == 0 ? 'active' : ''"
-                            *ngFor="let deck of decks; let i=index">
-                            <div class="row">
-                                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12"
-                                    *ngFor="let card of deck.cards; let i=index">
-                                    <div class="card" draggable="true">
-                                        <article class="article article-style-b">
-                                            <div class="article-header">
-                                                <div class="article-image"
-                                                    data-background="../assets/img/news/img13.jpg">
-                                                </div>
-                                            </div>
-                                            <div class="article-details">
-                                                <div class="article-title">
-                                                    <h2><a href="#">{{card.name}}</a>
-                                                    </h2>
-                                                </div>
-                                            </div>
-                                        </article>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- <div class="carousel-item">
-                            <div class="row">
-                                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" *ngFor="let deck of decks[0].cards; let i=index">
-                                    <div class="card" draggable="true">
-                                        <article class="article article-style-b">
-                                            <div class="article-header">
-                                                <div class="article-image"
-                                                    data-background="../assets/img/news/img13.jpg">
-                                                </div>
-                                            </div>
-                                            <div class="article-details">
-                                                <div class="article-title">
-                                                    <h2><a href="#">{{deck.name}}</a>
-                                                    </h2>
-                                                </div>
-                                            </div>
-                                        </article>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> -->
-                    </div>
-
-                    <a class="btn-floating carousel-control-prev" href="#multi-item-example" role="button"
-                        data-slide="prev"><i class="fa fa-chevron-left"></i></a>
-                    <a class="btn-floating carousel-control-next" href="#multi-item-example" role="button"
-                        data-slide="next"><i class="fa fa-chevron-right"></i></a>
-
-                </div>
-
-
-                <div class="card-container">
-                    <div class="card" draggable="true" *ngFor="let card of cards">
+                    <div class="card" [id]="'deck_'+card.card_id" *ngFor="let card of deck_cards; let i = index">
                         <article class="article article-style-b">
                             <div class="article-header">
-                                <div class="article-image" data-background="../assets/img/news/img13.jpg">
+                                <div class="article-image" [style.background-image]="'url(' +card.image_url + ')'">
                                 </div>
                             </div>
                             <div class="article-details">
                                 <div class="article-title">
-                                    <h2><a href="#">{{card.name}}</a>
-                                    </h2>
+                                    <h6 class="mt-1 verflow-protector">
+                                        <div class="badge badge-warning mr-1">{{card.pitch}}</div>
+                                        <div *ngIf="card.type == 'Hero - Adult' || card.type == 'Hero - Young'"
+                                            class="badge badge-success mr-1">{{card.type}}</div>
+                                        {{card.name}}
+                                    </h6>
                                 </div>
                             </div>
                         </article>
                     </div>
                 </div>
 
-
             </section>
 
         </div>
     </div>
 </div>
+
+<app-loader [loading]="this.loading"></app-loader>

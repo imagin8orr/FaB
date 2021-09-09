@@ -224,7 +224,7 @@ router.post('/delete', function (req, res) {
   } else {
     cardController.deleteCard(req.body.card_id, req.trusted.user_id, function (err, card_data) {
       if (err) {
-        console.log('card/getById : getCardByCardId ', err);
+        console.log('card/delete : deleteCard ', err);
         return res.status(500).json({
           success: false,
           error: true,
@@ -236,7 +236,7 @@ router.post('/delete', function (req, res) {
           success: true,
           error: false,
           data: card_data,
-          message: ''
+          message: 'Card ' + _messages[5]
         });
       }
     });

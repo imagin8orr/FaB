@@ -16,10 +16,15 @@ export class MyCardsComponent implements OnInit {
   constructor(private router: Router, private cardService: CardService, public toastrService: ToastrService) { }
 
   ngOnInit() {
-    this.loadAllcards();
+    this.loadAllCards();
   }
 
-  loadAllcards() {
+  loadAllCards() {
+    setTimeout(() => {
+      if (document.getElementById('my-cards')) {
+        document.getElementById('my-cards').classList.add('active_nav');
+      }
+    }, 200);
     this.cardService.getMyCards().subscribe(result => {
       this.cardsPagination = result.data;
     }, err => {
@@ -38,7 +43,7 @@ export class MyCardsComponent implements OnInit {
       const body = { card_id: card_id }
       this.cardService.deleteCard(body).subscribe(result => {
         if (result.message) this.toastrService.success(result.message);
-        this.loadAllcards();
+        this.loadAllCards();
         this.loading = false;
       }, err => {
         this.handelError(err)

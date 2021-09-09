@@ -22,8 +22,9 @@ import { RegisterComponent } from './register/register.component';
 import { MyCardsComponent } from './cards/my-cards/my-cards.component';
 import { DeckListComponent } from './deck/deck-list/deck-list.component';
 import { ViewDeckComponent } from './deck/view-deck/view-deck.component';
-import {DragDropModule} from '@angular/cdk/drag-drop';
-import { TestComponent } from './deck/test/test.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { AddEditDeckComponent } from './deck/add-edit-deck/add-edit-deck.component';
+import { MyDeckComponent } from './deck/my-deck/my-deck.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { TestComponent } from './deck/test/test.component';
     MyCardsComponent,
     DeckListComponent,
     ViewDeckComponent,
-    TestComponent
+    AddEditDeckComponent,
+    MyDeckComponent
   ],
   imports: [
     BrowserModule,
@@ -51,9 +53,9 @@ import { TestComponent } from './deck/test/test.component';
     ReactiveFormsModule,
     ToastrModule.forRoot({
       closeButton: true,
-      timeOut:5000,
+      timeOut: 5000,
       extendedTimeOut: 5000,
-      titleClass:'none-custom'
+      titleClass: 'none-custom'
     }),
     LoaderModule,
     NgMultiSelectDropDownModule.forRoot(),

@@ -5,6 +5,7 @@ var empty = require('is-empty');
 var userController = require('../controllers/userController');
 var commonController = require('../controllers/commonController');
 var cardController = require('../controllers/cardController');
+var deckController = require('../controllers/deckController');
 const mailer = require('../helpers/mailer');
 var bcrypt = require('bcrypt');
 var jwt = require('jsonwebtoken');
@@ -419,24 +420,28 @@ function generateEmailToken(user_info, req, res) {
 
 
 router.get('/cards', function (req, res) {
-	cardController.getAllCards(null, function (err, card_data) {
-		if (err) {
-			console.log('card/list : getAllCards ', err);
-			return res.status(500).json({
-				success: false,
-				error: true,
-				data: Array(),
-				message: _messages[2]
-			});
-		} else {
-			return res.status(200).json({
-				success: true,
-				error: false,
-				data: card_data,
-				message: ''
-			});
-		}
-	});
+	try {
+		cardController.getAllCards(null, function (err, card_data) {
+			if (err) {
+				console.log('card/list : getAllCards ', err);
+				return res.status(500).json({
+					success: false,
+					error: true,
+					data: Array(),
+					message: _messages[2]
+				});
+			} else {
+				return res.status(200).json({
+					success: true,
+					error: false,
+					data: card_data,
+					message: ''
+				});
+			}
+		});
+	} catch (e) {
+		console.log(e);
+	}
 });
 
 router.post('/getById', function (req, res) {
@@ -470,4 +475,90 @@ router.post('/getById', function (req, res) {
 });
 
 
+router.get('/decks', function (req, res) {
+	deckController.getAllDeck(null, function (err, card_data) {
+		if (err) {
+			console.log('deck/pagination : getAllDeck ', err);
+			return res.status(500).json({
+				success: false,
+				error: true,
+				data: Array(),
+				message: _messages[2]
+			});
+		} else {
+			return res.status(200).json({
+				success: true,
+				error: false,
+				data: card_data,
+				message: ''
+			});
+		}
+	});
+});
+
+router.post('/deck-view', function (req, res) {
+	if (!req.body.deck_id) {
+		return res.status(404).json({
+			success: false,
+			error: true,
+			data: Array(),
+			message: _messages[2]
+		});
+	} else {
+		try {
+			deckController.getDeckById(req.body.deck_id, null, function (err, deck_data) {
+				if (err) {
+					console.log('deck/view : getAllDeck ', err);
+					return res.status(500).json({
+						success: false,
+						error: true,
+						data: Array(),
+						message: _messages[2]
+					});
+				} else {
+					if (!empty(deck_data)) {
+						deckController.getDeckCards(req.body.deck_id, function (err, deck_cards_data) {
+							if (err) {
+								console.log('deck/view : getAllDeck ', err);
+								return res.status(500).json({
+									success: false,
+									error: true,
+									data: Array(),
+									message: _messages[2]
+								});
+							} else {
+								return res.status(200).json({
+									success: true,
+									error: false,
+									data: {
+										deck_info: deck_data[0],
+										deck_cards: deck_cards_data
+									},
+									message: ''
+								});
+
+							}
+						});
+					} else {
+						return res.status(404).json({
+							success: false,
+							error: true,
+							data: Array(),
+							message: _messages[2]
+						});
+					}
+
+				}
+			});
+		} catch (e) {
+			console.log('deck/view : General ', err);
+			return res.status(500).json({
+				success: false,
+				error: true,
+				data: Array(),
+				message: _messages[2]
+			});
+		}
+	}
+});
 module.exports = router;

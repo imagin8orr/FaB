@@ -2,22 +2,22 @@
 module.exports = {
     getCardByCardId: function (card_id, callback) {
         try {
-            con.query('SELECT * FROM `cards` WHERE card_id = ?;', [card_id], function (err, user_data) {
+            con.query('SELECT card_id, name, type, class, card_set, rarity, image_url, attack, bonus_attack, block, bonus_block, pitch, cost, tags FROM `cards` WHERE card_id = ?;', [card_id], function (err, user_data) {
                 return callback(err, user_data);
             });
         } catch (err) {
             console.log(err, 'err');
         }
     },
-    
+
     getAllCards: function (user_id, callback) {
         try {
             if (user_id) {
-                con.query('SELECT * FROM cards WHERE user_id = ?', [user_id], function (err, card_data) {
+                con.query('SELECT card_id, name, image_url, type, pitch FROM cards WHERE user_id = ?', [user_id], function (err, card_data) {
                     return callback(err, card_data);
                 });
             } else {
-                con.query('SELECT * FROM cards', function (err, card_data) {
+                con.query('SELECT card_id, name, image_url, type, pitch FROM cards', function (err, card_data) {
                     return callback(err, card_data);
                 });
             }

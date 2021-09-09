@@ -14,6 +14,12 @@ export class CardsComponent implements OnInit {
   constructor(private cardService: CardService, public toastrService: ToastrService) { }
 
   ngOnInit() {
+    setTimeout(() => {
+      if (document.getElementById('nav-cards')) {
+        document.querySelector('.active_nav').classList.remove('active_nav')
+        document.getElementById('nav-cards').classList.add('active_nav');
+      }
+    }, 200);
     this.loadAllCards();
   }
 
@@ -27,5 +33,5 @@ export class CardsComponent implements OnInit {
   trackById(index: number, item: any) {
     return item.id
   }
- 
+
 }

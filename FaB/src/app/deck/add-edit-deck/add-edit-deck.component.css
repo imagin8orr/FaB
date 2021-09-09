@@ -1,7 +1,7 @@
 .card-container {
     overflow-x: scroll;
     display: flex;
-    padding: 3rem;
+    padding: 2rem 3rem 1.5rem 3rem;
 }
 
 .card {
@@ -9,7 +9,7 @@
     height: 350px;
     border-radius: 16px;
     background-color: #eeeded;
-    box-shadow: -1rem 0 3rem #c0c0c0;
+    box-shadow: -1rem 0 3rem #9d9d9d;
     display: flex;
     flex-direction: column;
     padding: 1.5rem;
@@ -60,11 +60,30 @@
     height: 280px;
 }
 
+.section .section-title {
+    margin: 10px 0 10px 0;
+}
 
+.h6, h6 {
+    font-size: 12px;
+    letter-spacing: 1px;
+    font-weight: 500;
+}
 
+.overflow-protector {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
 
-
-
+.custom-box-border {
+    border-color: #d3d3d3;
+    border-style: dashed;
+    border-width: 2px;
+    border-radius: 16px;
+}
 
 
 

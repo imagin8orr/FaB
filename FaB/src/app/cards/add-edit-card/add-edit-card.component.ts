@@ -61,6 +61,11 @@ export class AddEditCardComponent implements OnInit {
   get f() { return this.AddEditForm.controls; }
 
   ngOnInit() {
+    setTimeout(() => {
+      if (document.getElementById('my-cards')) {
+        document.getElementById('my-cards').classList.add('active_nav');
+      }
+    }, 200);
     this.id = this.route.snapshot.params['id'];
     this.isAddMode = !this.id;
     if (!this.isAddMode) {

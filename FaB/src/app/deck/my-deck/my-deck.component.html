@@ -10,7 +10,12 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4>Deck List</h4>
+                                <h4>My Deck List</h4>
+                                <div class="card-header-action pl-3">
+                                    <button class="btn btn-success" [routerLink]="['/deck/add']" title="Add New Deck">
+                                        <i class="fas fa-plus"></i> Add
+                                    </button>
+                                </div>
                             </div>
                             <table>
                                 <thead *ngIf="decksPagination?.length > 0">
@@ -23,9 +28,18 @@
                                     <tr *ngFor="let item of decksPagination; trackBy: trackById">
                                         <td data-label="Name">{{item.deck_name}}</td>
                                         <td data-label="Actions">
+
+                                            <button [routerLink]="['/deck/edit', item.deck_id]" data-toggle="tooltip"
+                                                title="Edit Deck" class="btn btn-icon btn-primary"><i
+                                                    class="far fa-edit"></i>
+                                            </button>
                                             <button [routerLink]="['/deck/view', item.deck_id]" title="View Deck"
                                                 class="btn btn-icon btn-info ml-2">
                                                 <i class="far fa-eye"></i>
+                                            </button>
+                                            <button (click)="callDelete(item.deck_id)" data-toggle="tooltip"
+                                                title="Delete Deck" class="btn btn-icon btn-danger ml-2">
+                                                <i class="fas fa-trash"></i>
                                             </button>
                                         </td>
                                     </tr>

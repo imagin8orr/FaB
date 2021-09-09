@@ -11,6 +11,31 @@ export class DeckService {
   private token = localStorage.getItem('access_token') ? localStorage.getItem('access_token') : '';
   constructor(private http: HttpClient) { }
 
+
+  getCards(): Observable<any> {
+    const url = `${this.WebUrl}webhook/cards`;
+    const httpOptions = {
+      headers: new HttpHeaders({
+        "Access-Control-Allow-Origin": "*",
+        'Content-Type': 'application/json',
+        "Access-Control-Allow-Credentials": "true"
+      })
+    };
+    return this.http.get(url, httpOptions);
+  }
+
+  getAllDecks(): Observable<any> {
+    const url = `${this.WebUrl}webhook/decks`;
+    const httpOptions = {
+      headers: new HttpHeaders({
+        "Access-Control-Allow-Origin": "*",
+        'Content-Type': 'application/json',
+        "Access-Control-Allow-Credentials": "true"
+      })
+    };
+    return this.http.get(url, httpOptions);
+  }
+
   getMyDecks(): Observable<any> {
     const url = `${this.WebUrl}deck/pagination`;
     const httpOptions = {
@@ -25,7 +50,12 @@ export class DeckService {
   }
 
   getDeckInfo(body): Observable<any> {
-    const url = `${this.WebUrl}deck/:id`;
+    if (this.token) {
+      var url = `${this.WebUrl}deck/view`;
+    } else {
+      var url = `${this.WebUrl}webhook/deck-view`;
+    }
+
     const httpOptions = {
       headers: new HttpHeaders({
         "Access-Control-Allow-Origin": "*",

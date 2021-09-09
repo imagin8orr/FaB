@@ -140,6 +140,11 @@ table {
     border-color: #e13545
   }
   
+
+  .active_nav {
+    background-color: #3b469d !important;
+    border-radius: 13px !important;
+  }
   
   
   

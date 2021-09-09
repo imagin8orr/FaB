@@ -5,26 +5,26 @@ import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-deck-list',
-  templateUrl: './deck-list.component.html',
-  styleUrls: ['./deck-list.component.css']
+  selector: 'app-my-deck',
+  templateUrl: './my-deck.component.html',
+  styleUrls: ['./my-deck.component.css']
 })
-export class DeckListComponent implements OnInit {
+export class MyDeckComponent implements OnInit {
   decksPagination: Deck[] = [];
   loading: boolean = false;
   constructor(private router: Router, private deckService: DeckService, private toastrService: ToastrService) { }
 
   ngOnInit() {
     setTimeout(() => {
-      if (document.getElementById('nav-decks')) {
-        document.getElementById('nav-decks').classList.add('active_nav');
+      if (document.getElementById('my-decks')) {
+        document.getElementById('my-decks').classList.add('active_nav');
       }
     }, 200);
     this.loadAllDecks();
   }
 
   loadAllDecks() {
-    this.deckService.getAllDecks().subscribe(result => {
+    this.deckService.getMyDecks().subscribe(result => {
       this.decksPagination = result.data;
     }, err => {
       this.handelError(err)
