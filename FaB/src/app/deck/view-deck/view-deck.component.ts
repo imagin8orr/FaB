@@ -13,14 +13,10 @@ import { ToastrService } from 'ngx-toastr';
 export class ViewDeckComponent implements OnInit {
   id: any;
   loading: boolean = false;
-  path = 'https://fabdb2.imgix.net/cards/printings/CRU072.png';
-  text = "Add Name"
-  name_required: boolean = false;
   name: string = null;
-  isPublic: boolean = false;
-
   deck_cards: Card[] = [];
-
+  hero_card = [];
+  hero_name;
   constructor(private route: ActivatedRoute, public router: Router, private deckService: DeckService, public toastrService: ToastrService) { }
 
   ngOnInit(): void {
@@ -38,7 +34,8 @@ export class ViewDeckComponent implements OnInit {
     this.deckService.getDeckInfo(body).subscribe(result => {
       this.deck_cards = result.data.deck_cards;
       this.name = result.data.deck_info.deck_name;
-      this.isPublic = result.data.deck_info.status;
+      this.hero_card = result.data.hero_card;
+      this.hero_name = result.data.deck_info.hero_name;
     }, err => {
       this.handelError(err);
     });
@@ -50,7 +47,7 @@ export class ViewDeckComponent implements OnInit {
     if (err.status == 401) {
       localStorage.removeItem('access_token');
       localStorage.removeItem('currentUser');
-      // window.location.reload();
+      window.location.reload();
       this.router.navigate(['/']);
     }
   }

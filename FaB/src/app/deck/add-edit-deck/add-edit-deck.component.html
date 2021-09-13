@@ -7,15 +7,15 @@
         <div class="main-content">
             <section class="section">
                 <div class="row">
-             
                     <div class="form-group col-xs-12 col-sm-12 col-md-4 col-lg-4">
                         <div class="form-group">
                             <label class="custom-switch mt-2">
-                              <input type="checkbox" [(ngModel)]="isPublic" name="custom-switch-checkbox" class="custom-switch-input">
-                              <span class="custom-switch-indicator"></span>
-                              <span class="custom-switch-description">Set Deck as Public</span>
+                                <input type="checkbox" [(ngModel)]="isPublic" name="custom-switch-checkbox"
+                                    class="custom-switch-input">
+                                <span class="custom-switch-indicator"></span>
+                                <span class="custom-switch-description">Set Deck as Public</span>
                             </label>
-                          </div>
+                        </div>
                     </div>
                     <div class="form-group col-xs-12 col-sm-12 col-md-4 col-lg-4">
                         <input placeholder="Deck Name" [(ngModel)]="name" id="name" type="text"
@@ -25,26 +25,18 @@
                         </div>
                     </div>
                     <div class="form-group col-xs-12 col-sm-12 col-md-4 col-lg-4 text-right">
-                     
                         <button type="submit" class="btn btn-primary" (click)="saveDeck()">
-                          {{isAddMode == true ? 'Add' : 'Save'}} 
+                            {{isAddMode == true ? 'Add' : 'Save'}}
                         </button>
                     </div>
                 </div>
 
                 <div cdkDropListGroup>
-
-                    <h2 class="section-title">Deck Cards</h2>
-
-                    <div id="main-deck" cdkDropList [(cdkDropListData)]="deck_cards" (cdkDropListDropped)="drop($event)"
-                        (cdkDragExited)="exited($event)" class="card-container deck-container custom-box-border text-center">
-
-                        <div class="card" [id]="'deck_'+card.card_id" *ngFor="let card of deck_cards; let i = index">
+                    <div id="hero-card" cdkDropList [(cdkDropListData)]="hero_card"
+                        (cdkDropListDropped)="dropHero($event)"
+                        class="hero-container custom-box-border text-center col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                        <div class="card" [id]="'hero_'+card.card_id" *ngFor="let card of hero_card; let i = index">
                             <article class="article article-style-b">
-                                <!-- <a title="Remove Card" (click)="removeItem(i, 'deck_'+card.card_id)"
-                                    class="btn btn-icon btn-sm btn-danger mb-2" tabindex="0">
-                                    <i class="fas fa-minus"></i>
-                                </a> -->
                                 <div class="article-header">
                                     <div class="article-image" [style.background-image]="'url(' +card.image_url + ')'">
                                     </div>
@@ -54,24 +46,61 @@
                                         <h6 class="mt-1 verflow-protector">
                                             <div class="badge badge-warning mr-1">{{card.pitch}}</div>
                                             <div *ngIf="card.type == 'Hero - Adult' || card.type == 'Hero - Young'"
-                                            class="badge badge-success mr-1">{{card.type}}</div>
+                                                class="badge badge-success mr-1">{{card.type}}</div>
                                             {{card.name}}
-                                            <a title="Remove Card" (click)="removeItem(i, card.card_id)"
-                                                class="btn btn-icon btn-sm btn-danger mt-1" tabindex="0">
-                                                <i class="fas fa-minus"></i>
-                                            </a>
+
                                         </h6>
+                                        <button title="Remove Card" (click)="removeHeroItem()"
+                                            class="btn btn-icon btn-sm btn-danger mt-1" tabindex="0">
+                                            <i class="fas fa-minus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+
+                        <h2 *ngIf="hero_card?.length < 1">Drop Hero Card here</h2>
+
+                    </div>
+                    
+                    <h2 class="section-title  pt-2 pb-2">Deck Cards</h2>
+
+                    <div id="main-deck" cdkDropList [(cdkDropListData)]="deck_cards" (cdkDropListDropped)="drop($event)"
+                        (cdkDragExited)="exited($event)"
+                        class="card-container deck-container custom-box-border text-center">
+
+                        <div class="card" [id]="'deck_'+card.card_id" *ngFor="let card of deck_cards; let i = index">
+                            <article class="article article-style-b">
+                                <div class="article-header">
+                                    <div class="article-image" [style.background-image]="'url(' +card.image_url + ')'">
+                                    </div>
+                                </div>
+                                <div class="article-details">
+                                    <div class="article-title">
+                                        <h6 class="mt-1 verflow-protector">
+                                            <div class="badge badge-warning mr-1">{{card.pitch}}</div>
+                                            <div *ngIf="card.type == 'Hero - Adult' || card.type == 'Hero - Young'"
+                                                class="badge badge-success mr-1">{{card.type}}</div>
+                                            {{card.name}}
+
+                                        </h6>
+                                        <button title="Remove Card" (click)="removeItem(i, card.card_id)"
+                                            class="btn btn-icon btn-sm btn-danger mt-1" tabindex="0">
+                                            <i class="fas fa-minus"></i>
+                                        </button>
                                     </div>
                                 </div>
                             </article>
                         </div>
 
                         <h2 *ngIf="deck_cards?.length < 1">Drop Card here</h2>
+
                     </div>
 
-                    <h2 class="section-title">All Cards</h2>
+                    <h2 class="section-title  pt-2 pb-2">All Cards</h2>
 
-                    <div id="card-deck" cdkDropList [cdkDropListData]="cards" class="card-container all-card-container custom-box-border">
+                    <div id="card-deck" cdkDropList [cdkDropListData]="cards"
+                        class="card-container all-card-container custom-box-border">
 
                         <div class="card" [id]="card.card_id" *ngFor="let card of cards; let i = index" cdkDrag>
                             <article class="article article-style-b text-center">
@@ -86,19 +115,17 @@
                                             <div *ngIf="card.type == 'Hero - Adult' || card.type == 'Hero - Young'"
                                                 class="badge badge-success mr-1">{{card.type}}</div>
                                             {{card.name}}
-                                            <button title="Add Card" (click)="addItem(i, card.card_id)"
-                                                class="btn btn-icon btn-sm btn-success mt-1"><i class="fas fa-plus"></i>
-                                            </button>
                                         </h6>
                                     </div>
+                                    <button title="Add Card" (click)="addItem(i, card.card_id)"
+                                        class="btn btn-icon btn-sm btn-success mt-1"><i class="fas fa-plus"></i>
+                                    </button>
                                 </div>
                             </article>
                         </div>
                     </div>
                 </div>
-
             </section>
-
         </div>
     </div>
 </div>

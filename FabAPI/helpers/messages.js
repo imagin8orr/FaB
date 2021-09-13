@@ -23,4 +23,5 @@ _messages[19] = "Scope can't empty!";
 _messages[20] = "Please add minimum 30 cards";
 _messages[21] = "Maximum card limit is 80";
 _messages[22] = "Deck must have one hero card";
+_messages[23] = "Must add Hero card";
 module.exports = _messages;

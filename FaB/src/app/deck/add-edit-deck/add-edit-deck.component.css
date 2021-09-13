@@ -4,15 +4,20 @@
     padding: 2rem 3rem 1.5rem 3rem;
 }
 
+.hero-container {
+    display: flex;
+    padding: 2rem 3rem 1.5rem 3rem;
+}
+
 .card {
    min-width: 250px;
-    height: 350px;
+   height: auto;
     border-radius: 16px;
     background-color: #eeeded;
     box-shadow: -1rem 0 3rem #9d9d9d;
     display: flex;
     flex-direction: column;
-    padding: 1.5rem;
+    padding:1.5rem 1.5em 0 1.5em;
     transition: 0.2s;
 }
 

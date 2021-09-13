@@ -21,32 +21,9 @@ export class AddEditDeckComponent implements OnInit {
   name_required: boolean = false;
   name: string = null;
   isPublic: boolean = false;
-
-  // cards = [
-  //   { card_id: 7, name: 'card7', image_url: this.path },
-  //   { card_id: 8, name: 'card8', image_url: this.path },
-  //   { card_id: 9, name: 'card9', image_url: this.path },
-  //   { card_id: 10, name: 'card10', image_url: this.path },
-  //   { card_id: 11, name: 'card11', image_url: this.path },
-  //   { card_id: 12, name: 'card12', image_url: this.path }
-  // ];
-
-  // decks: Deck[] = [
-  //   {
-  //     id: 1,
-  //     name: 'saasd',
-  //     cards: [
-  //       { card_id: 1, name: 'card1', image_url: this.path },
-  //       { card_id: 2, name: 'card2', image_url: this.path },
-  //       { card_id: 3, name: 'card3', image_url: this.path },
-  //       { card_id: 4, name: 'card4', image_url: this.path },
-  //       { card_id: 5, name: 'card5', image_url: this.path },
-  //       { card_id: 6, name: 'card6', image_url: this.path }
-  //     ]
-  //   }
-
-  // ];
-  cards= [];
+  hero_name: string = null;
+  cards = [];
+  hero_card = [];
   decks: Deck[] = [];
   deck_cards = this.decks.length > 0 ? this.decks[0].cards : [];
 
@@ -82,6 +59,8 @@ export class AddEditDeckComponent implements OnInit {
       this.deck_cards = result.data.deck_cards;
       this.name = result.data.deck_info.deck_name;
       this.isPublic = result.data.deck_info.status;
+      this.hero_card = result.data.hero_card;
+      this.hero_name = result.data.deck_info.hero_name;
     }, err => {
       this.handelError(err);
     });
@@ -89,14 +68,35 @@ export class AddEditDeckComponent implements OnInit {
 
   drop(event: CdkDragDrop<string[]>) {
     this.new_cards.push(event.previousContainer.data[event.previousIndex]);
-    console.log(event.previousContainer.data[event.previousIndex], 'data');
+
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
-      copyArrayItem(event.previousContainer.data,
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex);
+      if (event.previousContainer.data[event.previousIndex]['type'] != 'Hero - Adult' && event.previousContainer.data[event.previousIndex]['type'] != 'Hero - Young') {
+        copyArrayItem(event.previousContainer.data,
+          event.container.data,
+          event.previousIndex,
+          event.currentIndex);
+      } else {
+        this.toastrService.warning('Place hero card in hero section');
+      }
+    }
+  }
+
+  dropHero(event: CdkDragDrop<string[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      if (event.previousContainer.data[event.previousIndex]['type'] == 'Hero - Adult' || event.previousContainer.data[event.previousIndex]['type'] == 'Hero - Young') {
+        this.hero_card.splice(0, 1);
+        copyArrayItem(event.previousContainer.data,
+          event.container.data,
+          event.previousIndex,
+          event.currentIndex);
+      } else {
+        this.toastrService.warning('Only accepts hero cards');
+      }
+
     }
   }
 
@@ -111,9 +111,8 @@ export class AddEditDeckComponent implements OnInit {
       this.loading = false;
     } else {
       this.name_required = false;
-
       if (this.isAddMode) {
-        const body = { name: this.name, cards: this.deck_cards, status: this.isPublic }
+        const body = { name: this.name, cards: this.deck_cards, status: this.isPublic, hero_card: this.hero_card }
         this.deckService.addDeck(body).subscribe(result => {
           this.loading = false;
           if (result.data.message) this.toastrService.success(result.data.message);
@@ -122,7 +121,7 @@ export class AddEditDeckComponent implements OnInit {
           this.handelError(err);
         });
       } else {
-        const body = { deck_id: this.id, name: this.name, new_cards: this.new_cards, removed_cards: this.removed_cards, cards: this.deck_cards, status: this.isPublic }
+        const body = { deck_id: this.id, name: this.name, new_cards: this.new_cards, removed_cards: this.removed_cards, cards: this.deck_cards, status: this.isPublic, hero_card: this.hero_card }
         this.deckService.updateDeck(body).subscribe(result => {
           this.loading = false;
           if (result.data.message) this.toastrService.success(result.data.message);
@@ -131,23 +130,13 @@ export class AddEditDeckComponent implements OnInit {
           this.handelError(err);
         });
       }
-
     }
-
   }
 
 
-
   removeItem(index, id) {
-
     this.deck_cards.splice(index, 1);
-
-    console.log(this.new_cards, 'new_cards');
-
     const new_card_index = this.new_cards.findIndex(card => card.card_id === id);
-
-    console.log(new_card_index, 'new_card index');
-    console.log(new_card_index < -1, 'new_card_index < -1');
     if (new_card_index == -1) {
       const card_index = this.cards.findIndex(card => card.card_id === id);
       this.removed_cards.push(this.cards[card_index]);
@@ -155,24 +144,24 @@ export class AddEditDeckComponent implements OnInit {
     } else {
       this.new_cards.splice(new_card_index, 1);
     }
+  }
 
-    console.log(this.new_cards, 'udated new_cards');
-
+  removeHeroItem() {
+    this.hero_card.splice(0, 1);
   }
 
   addItem(index, id) {
-    this.deck_cards.push(this.cards[index]);
-
-    const remove_card_index = this.removed_cards.findIndex(card => card.card_id === id);
-
-    if (remove_card_index == -1) {
-      this.new_cards.push(this.cards[index]);
-      console.log(this.new_cards, 'udated new_cards');
+    if (this.cards[index]['type'] != 'Hero - Adult' && this.cards[index]['type'] != 'Hero - Young') {
+      this.deck_cards.push(this.cards[index]);
+      const remove_card_index = this.removed_cards.findIndex(card => card.card_id === id);
+      if (remove_card_index == -1) {
+        this.new_cards.push(this.cards[index]);
+      } else {
+        this.removed_cards.splice(remove_card_index, 1);
+      }
     } else {
-      this.removed_cards.splice(remove_card_index, 1);
-      console.log(this.removed_cards, 'removed_cards');
+      this.toastrService.warning('Place hero card in hero section');
     }
-
   }
 
   handelError(err) {

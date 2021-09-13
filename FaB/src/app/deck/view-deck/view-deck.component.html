@@ -6,10 +6,37 @@
         <!-- Main Content -->
         <div class="main-content">
             <section class="section">
-         
-                <h2 class="section-title"> {{name}} Cards</h2>
 
-                <div id="main-deck" class="card-container deck-container custom-box-border text-center">
+                <h2 class="section-title"> {{hero_name}}</h2>
+
+                <div id="hero-card" cdkDropList [(cdkDropListData)]="hero_card"
+                    class="hero-container custom-box-border text-center col-xs-12 col-sm-12 col-md-4 col-lg-4">
+
+                    <div class="card" [id]="'hero_'+card.card_id" *ngFor="let card of hero_card; let i = index">
+                        <article class="article article-style-b">
+                            <div class="article-header">
+                                <div class="article-image" [style.background-image]="'url(' +card.image_url + ')'">
+                                </div>
+                            </div>
+                            <div class="article-details">
+                                <div class="article-title">
+                                    <h6 class="mt-1 verflow-protector">
+                                        <div class="badge badge-warning mr-1">{{card.pitch}}</div>
+                                        <div *ngIf="card.type == 'Hero - Adult' || card.type == 'Hero - Young'"
+                                            class="badge badge-success mr-1">{{card.type}}</div>
+                                        {{card.name}}
+
+                                    </h6>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+
+                <h2 class="section-title pt-2 pb-2"> {{name}} Cards</h2>
+
+                <div id="main-deck" class="card-container deck-container custom-box-border text-center mt-3">
 
                     <div class="card" [id]="'deck_'+card.card_id" *ngFor="let card of deck_cards; let i = index">
                         <article class="article article-style-b">
@@ -30,9 +57,7 @@
                         </article>
                     </div>
                 </div>
-
             </section>
-
         </div>
     </div>
 </div>

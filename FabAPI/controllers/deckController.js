@@ -15,18 +15,23 @@ module.exports = {
             console.log(err, 'err in getAllDeck');
         }
     },
-    getDeckById: function (deck_id, user_id, callback) {
+    getViewDeckById: function (deck_id, user_id, callback) {
         try {
-            if(user_id){
-                con.query('SELECT deck_id, deck_name, status FROM deck WHERE deck_id = ? AND user_id = ?', [deck_id, user_id], function (err, deck_data) {
-                    return callback(err, deck_data);
-                });
-            }else{
-                con.query('SELECT deck_id, deck_name, status FROM deck WHERE deck_id = ? AND status = 1', [deck_id], function (err, deck_data) {
-                    return callback(err, deck_data);
-                });
-            }
-            
+            con.query('SELECT deck_id, deck_name, status, hero_card_id, hero_name FROM deck WHERE deck_id = ? AND user_id = ?', [deck_id, user_id], function (err, deck_data) {
+                return callback(err, deck_data);
+            });
+
+        } catch (err) {
+            console.log(err, 'err in getDeckById');
+        }
+    },
+    getDeckById: function (deck_id, callback) {
+        try {
+            con.query('SELECT deck_id, deck_name, status, hero_card_id, hero_name FROM deck WHERE deck_id = ? AND status = 1', [deck_id], function (err, deck_data) {
+                console.log(this.sql);
+                return callback(err, deck_data);
+            });
+
         } catch (err) {
             console.log(err, 'err in getDeckById');
         }
@@ -37,12 +42,21 @@ module.exports = {
                 return callback(err, deck_data);
             });
         } catch (err) {
-            console.log(err, 'err in getDeckById');
+            console.log(err, 'err in getDeckCards');
+        }
+    },
+    getCardByCardId: function (card_id, callback) {
+        try {
+            con.query('SELECT cards.card_id, cards.name, cards.pitch, cards.type, cards.image_url FROM `cards` WHERE card_id = ?;', [card_id], function (err, user_data) {
+                return callback(err, user_data);
+            });
+        } catch (err) {
+            console.log(err, 'err');
         }
     },
     createDeck: function (insert_array, callback) {
         try {
-            con.query('INSERT INTO deck(user_id, deck_name, status) VALUES ?;', [insert_array], function (err, deck_data) {
+            con.query('INSERT INTO deck(user_id, deck_name, status, hero_card_id, hero_name) VALUES ?;', [insert_array], function (err, deck_data) {
                 return callback(err, deck_data);
             });
         } catch (err) {
@@ -51,7 +65,7 @@ module.exports = {
     },
     updateDeck: function (update_array, callback) {
         try {
-            con.query('UPDATE `deck` SET deck_name=?, status=? WHERE deck_id = ? AND user_id = ?;',
+            con.query('UPDATE `deck` SET deck_name=?, status=?, hero_card_id=?, hero_name=? WHERE deck_id = ? AND user_id = ?;',
                 update_array, function (err, updated) {
                     return callback(err, updated);
                 });

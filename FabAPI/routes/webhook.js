@@ -506,7 +506,9 @@ router.post('/deck-view', function (req, res) {
 		});
 	} else {
 		try {
-			deckController.getDeckById(req.body.deck_id, null, function (err, deck_data) {
+			deckController.getDeckById(req.body.deck_id, function (err, deck_data) {
+
+				console.log(deck_data, 'deck_data')
 				if (err) {
 					console.log('deck/view : getAllDeck ', err);
 					return res.status(500).json({
@@ -527,14 +529,28 @@ router.post('/deck-view', function (req, res) {
 									message: _messages[2]
 								});
 							} else {
-								return res.status(200).json({
-									success: true,
-									error: false,
-									data: {
-										deck_info: deck_data[0],
-										deck_cards: deck_cards_data
-									},
-									message: ''
+								deckController.getCardByCardId(deck_data[0].hero_card_id, function (err, hero_cards_data) {
+									if (err) {
+										console.log('deck/view : getAllDeck ', err);
+										return res.status(500).json({
+											success: false,
+											error: true,
+											data: Array(),
+											message: _messages[2]
+										});
+									} else {
+										return res.status(200).json({
+											success: true,
+											error: false,
+											data: {
+												deck_info: deck_data[0],
+												deck_cards: deck_cards_data,
+												hero_card: hero_cards_data
+											},
+											message: ''
+										});
+
+									}
 								});
 
 							}

@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 var empty = require('is-empty');
 var deckController = require('../controllers/deckController');
-var cardController = require('../controllers/cardController');
 
 router.get('/pagination', function (req, res) {
     deckController.getAllDeck(req.trusted.user_id, function (err, card_data) {
@@ -27,7 +26,7 @@ router.get('/pagination', function (req, res) {
 
 
 router.post('/add', function (req, res) {
-    if (!req.body.name && !req.body.cards) {
+    if (!req.body.name && !req.body.cards && !req.body.hero_card) {
         return res.status(404).json({
             success: false,
             error: true,
@@ -54,19 +53,17 @@ router.post('/add', function (req, res) {
             });
         }
 
-        const haveHero = req.body.cards.filter(e => e.type == 'Hero - Adult' || e.type == 'Hero - Young');
-
-        if (empty(haveHero)) {
+        if (empty(req.body.hero_card)) {
             return res.status(404).json({
                 success: false,
                 error: true,
                 data: Array(),
-                message: _messages[22]
+                message: _messages[23]
             });
         }
 
         try {
-            let insert_array = [[req.trusted.user_id, req.body.name, req.body.status ? req.body.status : 0]]
+            let insert_array = [[req.trusted.user_id, req.body.name, req.body.status ? req.body.status : 0, req.body.hero_card[0].card_id, req.body.hero_card[0].name]]
             deckController.createDeck(insert_array, function (err, deck_data) {
                 if (err) {
                     console.log('deck/add : getAllDeck ', err);
@@ -120,7 +117,7 @@ router.post('/add', function (req, res) {
 
 
 router.post('/save', function (req, res) {
-    if (!req.body.deck_id && !req.body.name && !req.body.cards) {
+    if (!req.body.deck_id && !req.body.name && !req.body.cards && !req.body.hero_card) {
         return res.status(404).json({
             success: false,
             error: true,
@@ -167,18 +164,16 @@ router.post('/save', function (req, res) {
                         }
 
 
-                        const haveHero = req.body.cards.filter(e => e.type == 'Hero - Adult' || e.type == 'Hero - Young');
-
-                        if (empty(haveHero)) {
+                        if (empty(req.body.hero_card)) {
                             return res.status(404).json({
                                 success: false,
                                 error: true,
                                 data: Array(),
-                                message: _messages[22]
+                                message: _messages[23]
                             });
                         }
 
-                        let update_array = [req.body.name, req.body.status ? req.body.status : 0, req.body.deck_id, req.trusted.user_id]
+                        let update_array = [req.body.name, req.body.status ? req.body.status : 0, req.body.hero_card[0].card_id, req.body.hero_card[0].name, req.body.deck_id, req.trusted.user_id]
                         deckController.updateDeck(update_array, function (err, deck_data) {
                             if (err) {
                                 console.log('deck/add : getAllDeck ', err);
@@ -293,7 +288,7 @@ router.post('/view', function (req, res) {
         });
     } else {
         try {
-            deckController.getDeckById(req.body.deck_id, req.trusted.user_id, function (err, deck_data) {
+            deckController.getViewDeckById(req.body.deck_id, req.trusted.user_id, function (err, deck_data) {
                 if (err) {
                     console.log('deck/view : getAllDeck ', err);
                     return res.status(500).json({
@@ -314,14 +309,28 @@ router.post('/view', function (req, res) {
                                     message: _messages[2]
                                 });
                             } else {
-                                return res.status(200).json({
-                                    success: true,
-                                    error: false,
-                                    data: {
-                                        deck_info: deck_data[0],
-                                        deck_cards: deck_cards_data
-                                    },
-                                    message: ''
+                                deckController.getCardByCardId(deck_data[0].hero_card_id, function (err, hero_cards_data) {
+                                    if (err) {
+                                        console.log('deck/view : getAllDeck ', err);
+                                        return res.status(500).json({
+                                            success: false,
+                                            error: true,
+                                            data: Array(),
+                                            message: _messages[2]
+                                        });
+                                    } else {
+                                        return res.status(200).json({
+                                            success: true,
+                                            error: false,
+                                            data: {
+                                                deck_info: deck_data[0],
+                                                deck_cards: deck_cards_data,
+                                                hero_card: hero_cards_data
+                                            },
+                                            message: ''
+                                        });
+
+                                    }
                                 });
 
                             }
