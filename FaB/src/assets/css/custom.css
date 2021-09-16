@@ -146,7 +146,13 @@ table {
     border-radius: 13px !important;
   }
   
-  
+  .overflow-protector {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
   
   
   

@@ -160,7 +160,8 @@ export class AddEditDeckComponent implements OnInit {
         this.removed_cards.splice(remove_card_index, 1);
       }
     } else {
-      this.toastrService.warning('Place hero card in hero section');
+      this.hero_card.splice(0, 1);
+      this.hero_card.push(this.cards[index]);
     }
   }
 
