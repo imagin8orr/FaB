@@ -3,7 +3,7 @@ import { CardService } from '../../service/card.service';
 import { Card } from '../../models/Card';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
-
+declare var $:any;
 @Component({
   selector: 'app-my-cards',
   templateUrl: './my-cards.component.html',
@@ -55,6 +55,12 @@ export class MyCardsComponent implements OnInit {
       window.location.reload();
       this.router.navigate(['/']);
     }
+  }
+
+  OpenImage(image_url) {
+    console.log(image_url);
+    $('.gallery').attr('src', image_url);
+    $('#my-image-modal').modal('show');
   }
 
 
