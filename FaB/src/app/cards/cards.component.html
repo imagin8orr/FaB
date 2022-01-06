@@ -23,8 +23,9 @@
                                 <tbody>
                                     <tr *ngFor="let item of cardsPagination; trackBy: trackById">
                                         <td data-label="Card">
-                                            <a target="_blank" [href]="item.image_url">
-                                                <img [alt]="item.name" [src]="item.image_url" class="custom-image" data-toggle="tooltip" [title]="item.name"
+                                            <a  class="image_parent">
+                                                <img class="show-img" (mouseover)="OpenImage(item.image_url)" [alt]="item.name" [src]="item.image_url" class="custom-image"
+                                                    data-toggle="tooltip" [title]="item.name"
                                                     onerror="this.src='assets/img/img01.jpg'">
                                             </a>
                                         </td>
@@ -42,6 +43,18 @@
                     </div>
                 </div>
             </section>
+        </div>
+    </div>
+</div>
+
+
+<div id="my-image-modal" class="modal fade" aria-labelledby="my-modalLabel" aria-hidden="true" tabindex="-1" role="dialog">
+    <div class="modal-dialog" data-dismiss="modal">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <img src="" class="gallery" style="width: 100%;">
+            </div>
         </div>
     </div>
 </div>

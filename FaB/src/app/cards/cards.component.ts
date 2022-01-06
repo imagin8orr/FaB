@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CardService } from '../service/card.service';
 import { Card } from '../models/Card';
 import { ToastrService } from 'ngx-toastr';
+declare var $:any;
 @Component({
   selector: 'app-cards',
   templateUrl: './cards.component.html',
@@ -11,7 +12,9 @@ import { ToastrService } from 'ngx-toastr';
 export class CardsComponent implements OnInit {
   cardsPagination: Card[] = [];
   loading: boolean = false;
-  constructor(private cardService: CardService, public toastrService: ToastrService) { }
+  constructor(private cardService: CardService, public toastrService: ToastrService) {
+
+  }
 
   ngOnInit() {
     setTimeout(() => {
@@ -32,6 +35,12 @@ export class CardsComponent implements OnInit {
 
   trackById(index: number, item: any) {
     return item.id
+  }
+
+  OpenImage(image_url) {
+    console.log(image_url);
+    $('.gallery').attr('src', image_url);
+    $('#my-image-modal').modal('show');
   }
 
 }

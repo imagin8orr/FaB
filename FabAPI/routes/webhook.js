@@ -577,4 +577,119 @@ router.post('/deck-view', function (req, res) {
 		}
 	}
 });
+
+
+
+
+
+
+
+
+
+const axios = require("axios");
+router.get('/insertCards/:page', function (req, res) {
+	try {
+		const BASE_URL = `https://api.fabdb.net/cards?per_page=50&page=` + req.params.page;
+		axios({
+			method: "GET",
+			url: BASE_URL
+		}).then((response) => {
+			const dataString = JSON.stringify(response.data.data);
+			const data = JSON.parse(dataString);
+			const _length = data.length - 1;
+
+			data.forEach((element, i) => {
+				var insertCard = [];
+				const prints_array = element.printings.map(e => e.set).filter(e => e != null);
+
+				insertCard['set'] = prints_array[0] ? prints_array[0] : null;
+				if (element.rarity == 'R') {
+					insertCard['rarity'] = 'Rare';
+				} if (element.rarity == 'C') {
+					insertCard['rarity'] = 'Common';
+				} if (element.rarity == 'F') {
+					insertCard['rarity'] = 'Fabled';
+				} if (element.rarity == 'L') {
+					insertCard['rarity'] = 'Legendary';
+				} if (element.rarity == 'M') {
+					insertCard['rarity'] = 'Majestic';
+				} if (element.rarity == 'P') {
+					insertCard['rarity'] = 'Promo';
+				} if (element.rarity == 'S') {
+					insertCard['rarity'] = 'Super Rare';
+				} if (element.rarity == 'T') {
+					insertCard['rarity'] = 'Tournament Prize';
+				}
+
+				insertCard['name'] = element.name;
+				insertCard['cost'] = element.stats.cost ? element.stats.cost : 0;
+				insertCard['pic'] = element.image;
+				insertCard['tags'] = element.keywords.join(",");
+				insertCard['attack'] = element.stats?.attack ? element.stats.attack : 1;
+				insertCard['bonus_attack'] = 0;
+				insertCard['block'] = element.stats.defense ? element.stats.defense : 1;
+				insertCard['bonus_block'] = 0;
+				insertCard['pitch'] = 1;
+
+				const BASE_URL2 = `https://api.fabdb.net/cards/` + element.identifier;
+				axios({
+					method: "GET",
+					url: BASE_URL2
+				}).then((card_response) => {
+					if (card_response.data.type) {
+						const type_string = card_response.data.type;
+						insertCard['type'] = type_string.charAt(0).toUpperCase() + type_string.slice(1);
+					} else {
+						insertCard['type'] = null
+					}
+
+					if (card_response.data.class) {
+						const class_string = card_response.data.class;
+						insertCard['class'] = class_string.charAt(0).toUpperCase() + class_string.slice(1);
+					} else {
+						insertCard['class'] = null
+					}
+
+					var insert_array = [[insertCard.name, insertCard.type, insertCard.class, insertCard.set, insertCard.rarity, insertCard.pic, insertCard.attack, insertCard.bonus_attack, insertCard.block, insertCard.bonus_block, insertCard.pitch, insertCard.cost, insertCard.tags, 2]];
+
+					cardController.addNewCard(insert_array, function (err, card_data) {
+						if (err) {
+							console.log('card/add : addNewCard ', err);
+							if (_length == i) {
+								return res.status(500).json({
+									success: false,
+									error: true,
+									data: Array(),
+									message: _messages[2]
+								});
+							}
+						} else {
+							if (_length == i) {
+								return res.status(200).json({
+									data: response.data.data,
+									links: response.data.links,
+									// meta: response.data.meta,
+									card_response: card_response.data
+								});
+							}
+						}
+					});
+
+
+
+				});
+			});
+
+		});
+		//	var cards = JSON.parse(response.data.data);
+
+
+	} catch (e) {
+		console.log(e);
+	}
+
+});
+
+
+
 module.exports = router;
